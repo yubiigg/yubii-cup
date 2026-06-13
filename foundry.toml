@@ -9,7 +9,7 @@ remappings = [
     "v4-core/=lib/v4-core/src/",
     "v4-periphery/=lib/v4-periphery/src/",
 ]
-via_ir = false
+via_ir = true
 
 [profile.default.fuzz]
 runs = 256
