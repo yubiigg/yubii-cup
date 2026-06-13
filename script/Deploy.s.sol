@@ -97,8 +97,9 @@ contract Deploy is Script {
             poolManager,
             address(yubii),
             umaOov3,
-            deployer, // fee recipient
-            deployer  // owner
+            deployer,                                        // fee recipient
+            deployer,                                        // owner
+            0xfCFA09B1Bc297F7B61401FbfBf76865fE9b12CB0     // marketingWallet
         );
         console2.log("YubiiFactory:", address(factory));
 

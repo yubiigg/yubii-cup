@@ -29,7 +29,8 @@ contract YubiiFactoryTest is Test {
             address(yubii),
             address(oracle),
             feeRecipient,
-            owner
+            owner,
+            owner // marketingWallet
         );
         vm.deal(owner, 10 ether);
     }
@@ -104,5 +105,32 @@ contract YubiiFactoryTest is Test {
         vm.expectRevert();
         vm.prank(alice);
         factory.setFeeRecipient(alice);
+    }
+
+    // ─────────────────────── freeze / thaw ───────────────────────────────────
+
+    function test_freezeLeague_holdsAllMarkets() public {
+        vm.startPrank(owner);
+        address m1 = factory.createMatch{value: 0.1 ether}("USA", "MEX", block.timestamp + 1 days);
+        address m2 = factory.createMatch{value: 0.1 ether}("ENG", "FRA", block.timestamp + 2 days);
+        factory.freezeLeague();
+        vm.stopPrank();
+        assertTrue(MatchMarket(payable(m1)).held());
+        assertTrue(MatchMarket(payable(m2)).held());
+    }
+
+    function test_thawLeague_resumesAllMarkets() public {
+        vm.startPrank(owner);
+        address m1 = factory.createMatch{value: 0.1 ether}("USA", "MEX", block.timestamp + 1 days);
+        factory.freezeLeague();
+        factory.thawLeague();
+        vm.stopPrank();
+        assertFalse(MatchMarket(payable(m1)).held());
+    }
+
+    function test_freezeLeague_revertsNonOwner() public {
+        vm.expectRevert();
+        vm.prank(alice);
+        factory.freezeLeague();
     }
 }

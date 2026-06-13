@@ -9,6 +9,7 @@ contract YubiiFactory is Ownable {
     address public immutable yubiiToken;
     address public immutable oracle;
     address public feeRecipient;
+    address public marketingWallet;
 
     address[] public markets;
 
@@ -30,12 +31,14 @@ contract YubiiFactory is Ownable {
         address _yubiiToken,
         address _oracle,
         address _feeRecipient,
-        address _owner
+        address _owner,
+        address _marketingWallet
     ) Ownable(_owner) {
         poolManager = _poolManager;
         yubiiToken = _yubiiToken;
         oracle = _oracle;
         feeRecipient = _feeRecipient;
+        marketingWallet = _marketingWallet;
     }
 
     function createMatch(string calldata teamA, string calldata teamB, uint256 kickoffTime)
@@ -54,7 +57,8 @@ contract YubiiFactory is Ownable {
             teamA,
             teamB,
             kickoffTime,
-            owner()
+            owner(),
+            marketingWallet
         );
 
         m.initializeLiquidity();
@@ -71,5 +75,17 @@ contract YubiiFactory is Ownable {
 
     function marketCount() external view returns (uint256) {
         return markets.length;
+    }
+
+    function freezeLeague() external onlyOwner {
+        for (uint256 i = 0; i < markets.length; i++) {
+            MatchMarket(payable(markets[i])).holdMatch();
+        }
+    }
+
+    function thawLeague() external onlyOwner {
+        for (uint256 i = 0; i < markets.length; i++) {
+            MatchMarket(payable(markets[i])).resumeMatch();
+        }
     }
 }

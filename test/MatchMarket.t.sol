@@ -16,10 +16,11 @@ contract MatchMarketTest is Test {
     MockOptimisticOracleV3 oracle;
     MatchMarket market;
 
-    address owner = makeAddr("owner");
-    address alice = makeAddr("alice");
-    address bob = makeAddr("bob");
-    address feeRecipient = makeAddr("feeRecipient");
+    address owner           = makeAddr("owner");
+    address alice           = makeAddr("alice");
+    address bob             = makeAddr("bob");
+    address feeRecipient    = makeAddr("feeRecipient");
+    address marketingWallet = makeAddr("marketingWallet");
 
     uint256 constant INITIAL_LIQUIDITY = 0.2 ether;
     uint256 constant KICKOFF = 2 days;
@@ -44,9 +45,14 @@ contract MatchMarketTest is Test {
             "Manchester United",
             "Liverpool",
             block.timestamp + KICKOFF,
-            owner
+            owner,
+            marketingWallet
         );
         market.initializeLiquidity();
+
+        // Remove limits so existing tests can buy > maxBuyETH without extra setup
+        vm.prank(owner);
+        market.removeLimits();
 
         // Approve market to spend SHOBU
         vm.prank(alice);
@@ -330,7 +336,256 @@ contract MatchMarketTest is Test {
         market.redeem(0);
     }
 
+    // ─────────────────────── max buy limit ───────────────────────────────────
+
+    function test_buyLimit_revertsWhenExceeded() public {
+        MatchMarket m = _freshMarket();
+        vm.expectRevert(MatchMarket.BuyLimitExceeded.selector);
+        vm.prank(alice);
+        m.buy{value: 0.01 ether + 1}(true, 0);
+    }
+
+    function test_buyLimit_allowsAtMax() public {
+        MatchMarket m = _freshMarket();
+        vm.prank(alice);
+        m.buy{value: 0.01 ether}(true, 0); // exactly at max — must not revert
+        assertGt(m.tokenA().balanceOf(alice), 0);
+    }
+
+    function test_removeLimits_allowsLargeBuy() public {
+        MatchMarket m = _freshMarket();
+        vm.prank(owner);
+        m.removeLimits();
+        assertTrue(m.limitsRemoved());
+        vm.prank(alice);
+        m.buy{value: 1 ether}(true, 0); // way above old limit
+        assertGt(m.tokenA().balanceOf(alice), 0);
+    }
+
+    function test_removeLimits_revertsNonOwner() public {
+        vm.expectRevert(MatchMarket.OnlyOwner.selector);
+        vm.prank(alice);
+        market.removeLimits();
+    }
+
+    // ─────────────────────── launch tax ──────────────────────────────────────
+
+    function test_buyTax_sentToMarketing() public {
+        uint256 ethIn = 0.01 ether;
+        uint256 expectedTax = (ethIn * 2000) / 10000; // 20%
+        uint256 mktBefore = marketingWallet.balance;
+
+        vm.prank(alice);
+        market.buy{value: ethIn}(true, 0);
+
+        assertEq(marketingWallet.balance, mktBefore + expectedTax);
+    }
+
+    function test_sellTax_sentToMarketing() public {
+        vm.prank(alice);
+        market.buy{value: 0.01 ether}(true, 0);
+
+        OutcomeToken tA = market.tokenA();
+        uint256 tokenBal = tA.balanceOf(alice);
+        vm.prank(alice);
+        tA.approve(address(market), tokenBal);
+
+        uint256 mktBefore = marketingWallet.balance;
+        vm.prank(alice);
+        market.sell(true, tokenBal, 0);
+
+        assertGt(marketingWallet.balance, mktBefore);
+    }
+
+    function test_sellTax_userReceivesNetAmount() public {
+        vm.prank(alice);
+        market.buy{value: 0.01 ether}(true, 0);
+
+        OutcomeToken tA = market.tokenA();
+        uint256 tokenBal = tA.balanceOf(alice);
+        vm.prank(alice);
+        tA.approve(address(market), tokenBal);
+
+        uint256 ethBefore = alice.balance;
+        vm.prank(alice);
+        market.sell(true, tokenBal, 0);
+
+        // user receives positive ETH net of 20% sell tax
+        assertGt(alice.balance, ethBefore);
+    }
+
+    function test_reduceTax() public {
+        vm.prank(owner);
+        market.reduceTax(300, 200);
+        assertEq(market.buyTaxBps(), 300);
+        assertEq(market.sellTaxBps(), 200);
+    }
+
+    function test_reduceTax_revertsAboveCap() public {
+        vm.expectRevert(MatchMarket.TaxTooHigh.selector);
+        vm.prank(owner);
+        market.reduceTax(501, 0);
+    }
+
+    function test_reduceTax_revertsNonOwner() public {
+        vm.expectRevert(MatchMarket.OnlyOwner.selector);
+        vm.prank(alice);
+        market.reduceTax(100, 100);
+    }
+
+    function test_removeTax_zeroesBoth() public {
+        vm.prank(owner);
+        market.removeTax();
+        assertEq(market.buyTaxBps(), 0);
+        assertEq(market.sellTaxBps(), 0);
+    }
+
+    function test_removeTax_revertsNonOwner() public {
+        vm.expectRevert(MatchMarket.OnlyOwner.selector);
+        vm.prank(alice);
+        market.removeTax();
+    }
+
+    // ─────────────────────── settlement fee ──────────────────────────────────
+
+    function test_settlementFee_sentToMarketing() public {
+        vm.prank(alice);
+        market.buy{value: 0.01 ether}(true, 0);
+
+        uint256 mktBefore = marketingWallet.balance;
+        _settleTeamA();
+
+        assertGt(marketingWallet.balance, mktBefore);
+    }
+
+    function test_settlementFee_isOnePercent() public {
+        vm.prank(alice);
+        market.buy{value: 0.01 ether}(true, 0);
+        vm.prank(bob);
+        market.buy{value: 0.01 ether}(false, 0);
+
+        // capture pool balance just before settlement
+        uint256 mktBefore = marketingWallet.balance;
+        _settleTeamA();
+
+        uint256 feeReceived = marketingWallet.balance - mktBefore;
+        uint256 totalPool = market.totalSettledETH();
+        // fee + totalSettled ≈ pre-fee balance; fee should be ~1% of that
+        uint256 preFee = feeReceived + totalPool;
+        assertApproxEqAbs(feeReceived, preFee / 100, 1);
+    }
+
+    // ─────────────────────── hold / resume / reclaim ─────────────────────────
+
+    function test_holdMatch_pausesBuy() public {
+        vm.prank(owner);
+        market.holdMatch();
+        assertTrue(market.held());
+        vm.expectRevert(MatchMarket.MatchHeld.selector);
+        vm.prank(alice);
+        market.buy{value: 0.001 ether}(true, 0);
+    }
+
+    function test_holdMatch_pausesSell() public {
+        vm.prank(alice);
+        market.buy{value: 0.001 ether}(true, 0);
+
+        OutcomeToken tA = market.tokenA();
+        uint256 bal = tA.balanceOf(alice);
+
+        vm.prank(owner);
+        market.holdMatch();
+
+        vm.prank(alice);
+        tA.approve(address(market), bal);
+        vm.expectRevert(MatchMarket.MatchHeld.selector);
+        vm.prank(alice);
+        market.sell(true, bal, 0);
+    }
+
+    function test_resumeMatch_unpauses() public {
+        vm.prank(owner);
+        market.holdMatch();
+        vm.prank(owner);
+        market.resumeMatch();
+        assertFalse(market.held());
+        vm.prank(alice);
+        market.buy{value: 0.001 ether}(true, 0);
+        assertGt(market.tokenA().balanceOf(alice), 0);
+    }
+
+    function test_holdMatch_revertsNonOwner() public {
+        vm.expectRevert(MatchMarket.OnlyOwner.selector);
+        vm.prank(alice);
+        market.holdMatch();
+    }
+
+    function test_resumeMatch_revertsNonOwner() public {
+        vm.expectRevert(MatchMarket.OnlyOwner.selector);
+        vm.prank(alice);
+        market.resumeMatch();
+    }
+
+    function test_reclaimETH_whenHeld() public {
+        vm.deal(address(market), 1 ether);
+        vm.prank(owner);
+        market.holdMatch();
+
+        uint256 ownerBefore = owner.balance;
+        vm.prank(owner);
+        market.reclaimETH(owner, 1 ether);
+        assertEq(owner.balance, ownerBefore + 1 ether);
+    }
+
+    function test_reclaimETH_revertsWhenActive() public {
+        vm.expectRevert();
+        vm.prank(owner);
+        market.reclaimETH(owner, 0);
+    }
+
+    function test_reclaimToken_allowsNonOutcomeToken() public {
+        deal(address(yubii), address(market), 100 ether);
+        uint256 ownerBefore = yubii.balanceOf(owner);
+        vm.prank(owner);
+        market.reclaimToken(address(yubii), owner, 100 ether);
+        assertEq(yubii.balanceOf(owner), ownerBefore + 100 ether);
+    }
+
+    function test_reclaimToken_revertsForOutcomeTokenA() public {
+        address tA = address(market.tokenA());
+        vm.expectRevert(MatchMarket.CannotReclaimOutcomeToken.selector);
+        vm.prank(owner);
+        market.reclaimToken(tA, owner, 1);
+    }
+
+    function test_reclaimToken_revertsNonOwner() public {
+        vm.expectRevert(MatchMarket.OnlyOwner.selector);
+        vm.prank(alice);
+        market.reclaimToken(address(yubii), alice, 1);
+    }
+
     // ─────────────────────── helpers ─────────────────────────────────────────
+
+    function _freshMarket() internal returns (MatchMarket m) {
+        m = new MatchMarket{value: INITIAL_LIQUIDITY}(
+            address(pm),
+            address(yubii),
+            feeRecipient,
+            address(oracle),
+            "Manchester United",
+            "Liverpool",
+            block.timestamp + KICKOFF,
+            owner,
+            marketingWallet
+        );
+        m.initializeLiquidity();
+        vm.prank(alice);
+        yubii.approve(address(m), type(uint256).max);
+        vm.prank(bob);
+        yubii.approve(address(m), type(uint256).max);
+    }
+
+    // ─────────────────────── helpers (original) ──────────────────────────────
 
     function _settleTeamA() internal {
         vm.warp(block.timestamp + KICKOFF + 1);

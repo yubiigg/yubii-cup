@@ -58,6 +58,12 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     bool public liquidityInitialized;
     bool public settled;
     bool public pinkyBroken;
+    bool public held;
+    bool public limitsRemoved;
+    uint256 public maxBuyETH = 0.01 ether;
+    uint256 public buyTaxBps = 2000;
+    uint256 public sellTaxBps = 2000;
+    address public marketingWallet;
     uint8 public winner; // 1 = teamA, 2 = teamB
     uint256 public totalSettledETH;
     uint256 public settledWinnerSupply; // winner token supply snapshot at settlement
@@ -73,6 +79,8 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     event Settled(uint8 winner, uint256 totalETH);
     event Redeemed(address indexed user, uint256 tokensIn, uint256 ethOut);
     event BreakPinky(address indexed to, uint256 ethAmount);
+    event MarketHeld();
+    event MarketResumed();
 
     // ─────────────────────── errors ──────────────────────────────────────────
 
@@ -90,6 +98,10 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     error ZeroAmount();
     error InsufficientValue();
     error PinkyBroken();
+    error BuyLimitExceeded();
+    error TaxTooHigh();
+    error MatchHeld();
+    error CannotReclaimOutcomeToken();
 
     // ─────────────────────── structs ─────────────────────────────────────────
 
@@ -124,10 +136,12 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         string memory _teamA,
         string memory _teamB,
         uint256 _kickoffTime,
-        address _owner
+        address _owner,
+        address _marketingWallet
     ) payable {
         factory = msg.sender;
         owner = _owner;
+        marketingWallet = _marketingWallet;
         poolManager = IPoolManager(_poolManager);
         yubiiToken = YubiiToken(_yubiiToken);
         feeRecipient = _feeRecipient;
@@ -179,6 +193,51 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         }
     }
 
+    // ─────────────────────── external: owner admin ───────────────────────────
+
+    function removeLimits() external {
+        if (msg.sender != owner) revert OnlyOwner();
+        limitsRemoved = true;
+    }
+
+    function reduceTax(uint256 newBuy, uint256 newSell) external {
+        if (msg.sender != owner) revert OnlyOwner();
+        if (newBuy > 500 || newSell > 500) revert TaxTooHigh();
+        buyTaxBps = newBuy;
+        sellTaxBps = newSell;
+    }
+
+    function removeTax() external {
+        if (msg.sender != owner) revert OnlyOwner();
+        buyTaxBps = 0;
+        sellTaxBps = 0;
+    }
+
+    function holdMatch() external {
+        if (msg.sender != owner && msg.sender != factory) revert OnlyOwner();
+        held = true;
+        emit MarketHeld();
+    }
+
+    function resumeMatch() external {
+        if (msg.sender != owner && msg.sender != factory) revert OnlyOwner();
+        held = false;
+        emit MarketResumed();
+    }
+
+    function reclaimETH(address to, uint256 amount) external {
+        if (msg.sender != owner) revert OnlyOwner();
+        require(held || pinkyBroken || settled, "Not held, pinkyBroken, or settled");
+        (bool ok,) = payable(to).call{value: amount}("");
+        require(ok, "ETH transfer failed");
+    }
+
+    function reclaimToken(address token, address to, uint256 amount) external {
+        if (msg.sender != owner) revert OnlyOwner();
+        if (token == address(tokenA) || token == address(tokenB)) revert CannotReclaimOutcomeToken();
+        IERC20(token).transfer(to, amount);
+    }
+
     // ─────────────────────── external: emergency ─────────────────────────────
 
     function breakPinky() external {
@@ -205,7 +264,15 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
 
     function buy(bool isTeamA, uint256 minOut) external payable {
         if (settled || pinkyBroken) revert MarketSettled();
+        if (held) revert MatchHeld();
         if (msg.value == 0) revert ZeroAmount();
+        if (!limitsRemoved && msg.value > maxBuyETH) revert BuyLimitExceeded();
+
+        uint256 tax = (msg.value * buyTaxBps) / 10000;
+        if (tax > 0) {
+            (bool ok,) = payable(marketingWallet).call{value: tax}("");
+            require(ok, "Tax transfer failed");
+        }
 
         uint256 yubiiFee = (msg.value * FEE_BPS) / 10000;
         if (yubiiFee > 0) {
@@ -217,7 +284,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
                 isTeamA: isTeamA,
                 user: msg.sender,
                 minOut: minOut,
-                ethIn: msg.value
+                ethIn: msg.value - tax
             })))
         );
 
@@ -229,6 +296,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
 
     function sell(bool isTeamA, uint256 amountIn, uint256 minEthOut) external {
         if (settled || pinkyBroken) revert MarketSettled();
+        if (held) revert MatchHeld();
         if (amountIn == 0) revert ZeroAmount();
 
         uint256 yubiiFee = (amountIn * FEE_BPS) / 10000;
@@ -455,8 +523,15 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
 
         uint256 ethOut = 0;
         if (a0 > 0) {
-            ethOut = uint256(a0);
-            poolManager.take(CurrencyLibrary.ADDRESS_ZERO, p.user, ethOut);
+            uint256 gross = uint256(a0);
+            uint256 tax = (gross * sellTaxBps) / 10000;
+            ethOut = gross - tax;
+            if (ethOut > 0) {
+                poolManager.take(CurrencyLibrary.ADDRESS_ZERO, p.user, ethOut);
+            }
+            if (tax > 0) {
+                poolManager.take(CurrencyLibrary.ADDRESS_ZERO, marketingWallet, tax);
+            }
         }
 
         return abi.encode(ethOut);
@@ -533,6 +608,13 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
 
         // Remove all liquidity from both pools, collect ETH
         poolManager.unlock(abi.encode(ACT_REMOVE, bytes("")));
+
+        // 1% settlement fee to marketingWallet
+        uint256 settlementFee = address(this).balance / 100;
+        if (settlementFee > 0) {
+            (bool ok,) = payable(marketingWallet).call{value: settlementFee}("");
+            require(ok, "Settlement fee failed");
+        }
 
         totalSettledETH = address(this).balance;
 
