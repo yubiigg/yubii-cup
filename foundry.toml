@@ -2,5 +2,18 @@
 src = "src"
 out = "out"
 libs = ["lib"]
+optimizer = true
+optimizer_runs = 200
+remappings = [
+    "@openzeppelin/=lib/openzeppelin-contracts/",
+    "v4-core/=lib/v4-core/src/",
+    "v4-periphery/=lib/v4-periphery/src/",
+]
+via_ir = false
 
-# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+[profile.default.fuzz]
+runs = 256
+
+[rpc_endpoints]
+sepolia = "${SEPOLIA_RPC}"
+mainnet = "${MAINNET_RPC}"
