@@ -32,11 +32,20 @@ interface IMockOO {
 // Required .env: PRIVATE_KEY, SEPOLIA_RPC
 // ─────────────────────────────────────────────────────────────────────────────
 
+interface IYubiiFactory {
+    function markets(uint256 index) external view returns (address);
+    function freezeLeague() external;
+    function thawLeague() external;
+}
+
 contract Interact is Script {
     MatchMarket constant MARKET              = MatchMarket(payable(0x19990fD9EDc391aed93779ff21D3d0d6E29054E7));
     address     constant YUBII_TOKEN         = 0xB876aC7cd0A4eBe37b35ed2d08a69D5DD51a2700;
     address     constant MARKETING_WALLET    = 0xfCFA09B1Bc297F7B61401FbfBf76865fE9b12CB0;
     address     constant SEPOLIA_POOL_MANAGER = 0xE03A1074c86CFeDd5C142C4F04F1a1536e203543;
+
+    MatchMarket constant USA_MEX  = MatchMarket(payable(0xED61ceA1658bF0c2F934882a2A27C4b6948c6207));
+    address     constant FACTORY  = 0xA194261A4849043bf6dae1B8EaA69978C52e5746;
 
     uint256 constant BUY_ETH = 0.005 ether;
 
@@ -324,6 +333,123 @@ contract Interact is Script {
         console2.log("    yTURK remaining :", IERC20(address(m.tokenA())).balanceOf(deployer));
         console2.log("    Marketing final :", MARKETING_WALLET.balance);
         console2.log("\n=== Lifecycle complete ===");
+    }
+
+    // ── testHoldMatch ─────────────────────────────────────────────────────────
+    // forge script script/Interact.s.sol --sig "testHoldMatch()" \
+    //   --rpc-url $SEPOLIA_RPC --broadcast
+
+    function testHoldMatch() external {
+        uint256 pk      = vm.envUint("PRIVATE_KEY");
+        address deployer = vm.addr(pk);
+
+        console2.log("=== testHoldMatch: USA vs MEX ===");
+        console2.log("Market :", address(USA_MEX));
+        console2.log("held   :", USA_MEX.held());
+
+        // 1. Hold the market
+        vm.startBroadcast(pk);
+        USA_MEX.holdMatch();
+        vm.stopBroadcast();
+        console2.log("\n[1] holdMatch() called");
+        console2.log("    held :", USA_MEX.held());
+
+        // 2. Attempt to buy - should revert with MatchHeld
+        console2.log("\n[2] Attempting buy while held (expect revert)...");
+        IERC20(YUBII_TOKEN).approve(address(USA_MEX), type(uint256).max);
+        (bool success,) = address(USA_MEX).call{value: 0.001 ether}(
+            abi.encodeWithSignature("buy(bool,uint256)", true, 0)
+        );
+        console2.log("    buy reverted:", !success);
+
+        // 3. Resume the market
+        vm.startBroadcast(pk);
+        USA_MEX.resumeMatch();
+        vm.stopBroadcast();
+        console2.log("\n[3] resumeMatch() called");
+        console2.log("    held :", USA_MEX.held());
+
+        // 4. Buy successfully
+        uint256 tokensBefore = IERC20(address(USA_MEX.tokenA())).balanceOf(deployer);
+        vm.startBroadcast(pk);
+        IERC20(0xacB4474196bDA1d8ba0ECc7B3B72178C09cd2F21).approve(address(USA_MEX), type(uint256).max);
+        USA_MEX.buy{value: 0.001 ether}(true, 0);
+        vm.stopBroadcast();
+        uint256 received = IERC20(address(USA_MEX.tokenA())).balanceOf(deployer) - tokensBefore;
+        console2.log("\n[4] Buy after resume succeeded");
+        console2.log("    yUSA received:", received);
+    }
+
+    // ── testFreezeLeague ──────────────────────────────────────────────────────
+    // forge script script/Interact.s.sol --sig "testFreezeLeague()" \
+    //   --rpc-url $SEPOLIA_RPC --broadcast
+
+    function testFreezeLeague() external {
+        uint256 pk = vm.envUint("PRIVATE_KEY");
+
+        console2.log("=== testFreezeLeague: Factory ===");
+        console2.log("Factory :", FACTORY);
+
+        address firstMarket = IYubiiFactory(FACTORY).markets(0);
+        console2.log("markets(0) :", firstMarket);
+        console2.log("held before:", MatchMarket(payable(firstMarket)).held());
+
+        // 1. Freeze all markets
+        vm.startBroadcast(pk);
+        IYubiiFactory(FACTORY).freezeLeague();
+        vm.stopBroadcast();
+        console2.log("\n[1] freezeLeague() called");
+        console2.log("    held :", MatchMarket(payable(firstMarket)).held());
+
+        // 2. Thaw all markets
+        vm.startBroadcast(pk);
+        IYubiiFactory(FACTORY).thawLeague();
+        vm.stopBroadcast();
+        console2.log("\n[2] thawLeague() called");
+        console2.log("    held :", MatchMarket(payable(firstMarket)).held());
+    }
+
+    // ── testReclaimETH ────────────────────────────────────────────────────────
+    // forge script script/Interact.s.sol --sig "testReclaimETH()" \
+    //   --rpc-url $SEPOLIA_RPC --broadcast
+
+    function testReclaimETH() external {
+        uint256 pk      = vm.envUint("PRIVATE_KEY");
+        address deployer = vm.addr(pk);
+
+        console2.log("=== testReclaimETH: USA vs MEX ===");
+        console2.log("Market  :", address(USA_MEX));
+
+        uint256 ethBefore = deployer.balance;
+        uint256 marketBal = address(USA_MEX).balance;
+        console2.log("Deployer ETH before :", ethBefore);
+        console2.log("Market ETH balance  :", marketBal);
+
+        // 1. Hold the market
+        vm.startBroadcast(pk);
+        USA_MEX.holdMatch();
+        vm.stopBroadcast();
+        console2.log("\n[1] holdMatch() called");
+
+        // 2. Reclaim ETH (only succeeds if market holds ETH - adjust amount if needed)
+        uint256 reclaimAmt = marketBal >= 0.001 ether ? 0.001 ether : marketBal;
+        if (reclaimAmt == 0) {
+            console2.log("\n[2] Market has no ETH to reclaim - skipping reclaimETH");
+        } else {
+            vm.startBroadcast(pk);
+            USA_MEX.reclaimETH(deployer, reclaimAmt);
+            vm.stopBroadcast();
+            console2.log("\n[2] reclaimETH called, amount:", reclaimAmt);
+            console2.log("    Deployer ETH after  :", deployer.balance);
+            console2.log("    ETH gained          :", deployer.balance - ethBefore);
+        }
+
+        // 3. Resume so the market stays usable
+        vm.startBroadcast(pk);
+        USA_MEX.resumeMatch();
+        vm.stopBroadcast();
+        console2.log("\n[3] resumeMatch() called - market restored");
+        console2.log("    held :", USA_MEX.held());
     }
 
     // ── helpers ───────────────────────────────────────────────────────────────
