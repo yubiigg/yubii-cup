@@ -118,16 +118,16 @@ contract Deploy is Script {
     }
 
     function _createMatches(YubiiFactory factory, uint256 k1, uint256 k2, uint256 k3, uint256 k4) internal {
-        console2.log("\nMatch 1 (USA vs MEX) :", factory.createMatch{value: LIQUIDITY_PER_MATCH}("USA", "MEX", k1));
+        console2.log("\nMatch 1 (USA vs MEX) :", factory.createMatch{value: LIQUIDITY_PER_MATCH}("USA", "MEX", k1, 1));
         console2.log("  Kickoff             :", k1);
 
-        console2.log("Match 2 (ENG vs FRA) :", factory.createMatch{value: LIQUIDITY_PER_MATCH}("England", "France", k2));
+        console2.log("Match 2 (ENG vs FRA) :", factory.createMatch{value: LIQUIDITY_PER_MATCH}("England", "France", k2, 1));
         console2.log("  Kickoff             :", k2);
 
-        console2.log("Match 3 (BRA vs ARG) :", factory.createMatch{value: LIQUIDITY_PER_MATCH}("Brazil", "Argentina", k3));
+        console2.log("Match 3 (BRA vs ARG) :", factory.createMatch{value: LIQUIDITY_PER_MATCH}("Brazil", "Argentina", k3, 1));
         console2.log("  Kickoff             :", k3);
 
-        console2.log("Match 4 (GER vs ESP) :", factory.createMatch{value: LIQUIDITY_PER_MATCH}("Germany", "Spain", k4));
+        console2.log("Match 4 (GER vs ESP) :", factory.createMatch{value: LIQUIDITY_PER_MATCH}("Germany", "Spain", k4, 1));
         console2.log("  Kickoff             :", k4);
     }
 }

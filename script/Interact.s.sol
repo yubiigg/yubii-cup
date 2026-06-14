@@ -254,7 +254,8 @@ contract Interact is Script {
             "Japan",
             block.timestamp - 1,  // kickoff already past
             deployer,             // owner
-            MARKETING_WALLET
+            MARKETING_WALLET,
+            1                     // BALANCED fee profile
         );
         m.initializeLiquidity();
 
@@ -450,6 +451,99 @@ contract Interact is Script {
         vm.stopBroadcast();
         console2.log("\n[3] resumeMatch() called - market restored");
         console2.log("    held :", USA_MEX.held());
+    }
+
+    // ── testRemoveLimits ──────────────────────────────────────────────────────
+    // forge script script/Interact.s.sol --sig "testRemoveLimits()" \
+    //   --rpc-url $SEPOLIA_RPC --broadcast
+
+    function testRemoveLimits() external {
+        uint256 pk      = vm.envUint("PRIVATE_KEY");
+        address deployer = vm.addr(pk);
+        address yubii   = 0xacB4474196bDA1d8ba0ECc7B3B72178C09cd2F21;
+
+        console2.log("=== testRemoveLimits: USA vs MEX ===");
+        console2.log("maxBuyETH     :", USA_MEX.maxBuyETH());
+        console2.log("limitsRemoved :", USA_MEX.limitsRemoved());
+
+        // 1. Attempt 0.02 ETH buy - should revert with BuyLimitExceeded
+        console2.log("\n[1] Attempting 0.02 ETH buy (limit is 0.01 - expect revert)...");
+        (bool success,) = address(USA_MEX).call{value: 0.02 ether}(
+            abi.encodeWithSignature("buy(bool,uint256)", true, 0)
+        );
+        console2.log("    buy reverted:", !success);
+
+        // 2. Remove limits
+        vm.startBroadcast(pk);
+        USA_MEX.removeLimits();
+        vm.stopBroadcast();
+        console2.log("\n[2] removeLimits() called");
+        console2.log("    limitsRemoved:", USA_MEX.limitsRemoved());
+
+        // 3. Buy 0.02 ETH successfully
+        uint256 tokensBefore = IERC20(address(USA_MEX.tokenA())).balanceOf(deployer);
+        vm.startBroadcast(pk);
+        IERC20(yubii).approve(address(USA_MEX), type(uint256).max);
+        USA_MEX.buy{value: 0.02 ether}(true, 0);
+        vm.stopBroadcast();
+        uint256 received = IERC20(address(USA_MEX.tokenA())).balanceOf(deployer) - tokensBefore;
+        console2.log("\n[3] 0.02 ETH buy succeeded");
+        console2.log("    yUSA received:", received);
+    }
+
+    // ── testReduceTax ─────────────────────────────────────────────────────────
+    // forge script script/Interact.s.sol --sig "testReduceTax()" \
+    //   --rpc-url $SEPOLIA_RPC --broadcast
+
+    function testReduceTax() external {
+        uint256 pk      = vm.envUint("PRIVATE_KEY");
+        address deployer = vm.addr(pk);
+        address yubii   = 0xacB4474196bDA1d8ba0ECc7B3B72178C09cd2F21;
+        address mkt     = 0xfCFA09B1Bc297F7B61401FbfBf76865fE9b12CB0;
+
+        console2.log("=== testReduceTax: USA vs MEX ===");
+        console2.log("buyTaxBps  :", USA_MEX.buyTaxBps());
+        console2.log("sellTaxBps :", USA_MEX.sellTaxBps());
+
+        // 1. reduceTax(300, 300) -> 3%
+        vm.startBroadcast(pk);
+        USA_MEX.reduceTax(300, 300);
+        vm.stopBroadcast();
+        console2.log("\n[1] reduceTax(300, 300) called");
+        console2.log("    buyTaxBps  :", USA_MEX.buyTaxBps());
+        console2.log("    sellTaxBps :", USA_MEX.sellTaxBps());
+
+        // 2. Buy 0.005 ETH and check marketing wallet tax (should be 3% = 0.00015 ETH)
+        uint256 mktBefore1 = mkt.balance;
+        vm.startBroadcast(pk);
+        IERC20(yubii).approve(address(USA_MEX), type(uint256).max);
+        USA_MEX.buy{value: 0.005 ether}(true, 0);
+        vm.stopBroadcast();
+        uint256 taxAt3pct = mkt.balance - mktBefore1;
+        console2.log("\n[2] Buy 0.005 ETH at 3% tax");
+        console2.log("    Marketing received:", taxAt3pct);
+        console2.log("    Expected ~150000000000000 (0.00015 ETH)");
+
+        // 3. removeTax() -> 0%
+        vm.startBroadcast(pk);
+        USA_MEX.removeTax();
+        vm.stopBroadcast();
+        console2.log("\n[3] removeTax() called");
+        console2.log("    buyTaxBps  :", USA_MEX.buyTaxBps());
+        console2.log("    sellTaxBps :", USA_MEX.sellTaxBps());
+
+        // 4. Buy 0.005 ETH again and verify zero tax
+        uint256 mktBefore2 = mkt.balance;
+        vm.startBroadcast(pk);
+        IERC20(yubii).approve(address(USA_MEX), type(uint256).max);
+        USA_MEX.buy{value: 0.005 ether}(true, 0);
+        vm.stopBroadcast();
+        uint256 taxAt0pct = mkt.balance - mktBefore2;
+        console2.log("\n[4] Buy 0.005 ETH at 0% tax");
+        console2.log("    Marketing received:", taxAt0pct);
+        console2.log("    Tax zeroed        :", taxAt0pct == 0);
+
+        console2.log("\nDeployer ETH remaining:", deployer.balance);
     }
 
     // ── helpers ───────────────────────────────────────────────────────────────

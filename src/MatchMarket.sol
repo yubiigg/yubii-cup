@@ -18,14 +18,22 @@ import {IOptimisticOracleV3, IOptimisticOracleV3CallbackRecipient} from "./inter
 contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     // ─────────────────────── constants ───────────────────────────────────────
 
-    uint24 public constant POOL_FEE = 3000;
-    int24 public constant TICK_SPACING = 60;
-    int24 public constant TICK_LOWER = -887220;
-    int24 public constant TICK_UPPER = 887220;
-    uint160 public constant INITIAL_SQRT_PRICE = 79228162514264337593543950336; // sqrt(1) * 2^96
-    uint256 public constant FEE_BPS = 30; // 0.3%
-    uint64 public constant OO_LIVENESS = 7200; // 2 hours
-    bytes32 public constant OO_IDENTIFIER = bytes32("ASSERT_TRUTH");
+    uint24 internal constant POOL_FEE = 3000;
+    int24 internal constant TICK_SPACING = 60;
+    int24 internal constant TICK_LOWER = -887220;
+    int24 internal constant TICK_UPPER = 887220;
+    uint160 internal constant INITIAL_SQRT_PRICE = 79228162514264337593543950336;
+    uint64 internal constant OO_LIVENESS = 7200;
+    bytes32 internal constant OO_IDENTIFIER = bytes32("ASSERT_TRUTH");
+
+    // ── dynamic fee ───────────────────────────────────────────────────────────
+    uint256 internal constant FEE_MIN_BPS = 30;      // protocol fee floor (0.30%)
+    uint256 internal constant FEE_SCALE   = 1 ether; // ewmaVolume level that saturates to profile max
+    uint256 internal constant HALF_LIFE   = 100;     // EWMA decay half-life in blocks
+
+    uint256 internal constant PROFILE_MAX_SOFT       = 100; // max fee bps — SOFT
+    uint256 internal constant PROFILE_MAX_BALANCED   = 300; // max fee bps — BALANCED
+    uint256 internal constant PROFILE_MAX_AGGRESSIVE = 500; // max fee bps — AGGRESSIVE
 
     uint8 internal constant ACT_INIT = 0;
     uint8 internal constant ACT_BUY = 1;
@@ -34,17 +42,17 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
 
     // ─────────────────────── immutables ──────────────────────────────────────
 
-    IPoolManager public immutable poolManager;
-    YubiiToken public immutable yubiiToken;
-    address public immutable feeRecipient;
+    IPoolManager private immutable poolManager;
+    YubiiToken private immutable yubiiToken;
+    address private immutable feeRecipient;
     IOptimisticOracleV3 public immutable oracle;
-    address public immutable factory;
-    address public immutable owner;
+    address private immutable factory;
+    address private immutable owner;
 
     OutcomeToken public immutable tokenA;
     OutcomeToken public immutable tokenB;
-    PoolKey public poolKeyA;
-    PoolKey public poolKeyB;
+    PoolKey private poolKeyA;
+    PoolKey private poolKeyB;
 
     string public teamA;
     string public teamB;
@@ -55,11 +63,14 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     uint128 public liquidityA;
     uint128 public liquidityB;
 
-    bool public liquidityInitialized;
+    bool private liquidityInitialized;
     bool public settled;
-    bool public pinkyBroken;
+    bool private pinkyBroken;
     bool public held;
     bool public limitsRemoved;
+    uint8  public feeProfile;       // 0=SOFT 1=BALANCED 2=AGGRESSIVE (default: BALANCED)
+    uint256 public ewmaVolume;      // EWMA of ETH buy volume (wei)
+    uint256 public lastVolumeBlock; // block.number of last EWMA update
     uint256 public maxBuyETH = 0.01 ether;
     uint256 public buyTaxBps = 2000;
     uint256 public sellTaxBps = 2000;
@@ -81,6 +92,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     event BreakPinky(address indexed to, uint256 ethAmount);
     event MarketHeld();
     event MarketResumed();
+    event FeeProfileSet(uint8 profile);
 
     // ─────────────────────── errors ──────────────────────────────────────────
 
@@ -102,6 +114,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     error TaxTooHigh();
     error MatchHeld();
     error CannotReclaimOutcomeToken();
+    error InvalidFeeProfile();
 
     // ─────────────────────── structs ─────────────────────────────────────────
 
@@ -137,11 +150,15 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         string memory _teamB,
         uint256 _kickoffTime,
         address _owner,
-        address _marketingWallet
+        address _marketingWallet,
+        uint8 _feeProfile
     ) payable {
+        if (_feeProfile > 2) revert InvalidFeeProfile();
         factory = msg.sender;
         owner = _owner;
         marketingWallet = _marketingWallet;
+        feeProfile = _feeProfile;
+        lastVolumeBlock = block.number;
         poolManager = IPoolManager(_poolManager);
         yubiiToken = YubiiToken(_yubiiToken);
         feeRecipient = _feeRecipient;
@@ -213,6 +230,13 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         sellTaxBps = 0;
     }
 
+    function setFeeProfile(uint8 profile) external {
+        if (msg.sender != owner) revert OnlyOwner();
+        if (profile > 2) revert InvalidFeeProfile();
+        feeProfile = profile;
+        emit FeeProfileSet(profile);
+    }
+
     function holdMatch() external {
         if (msg.sender != owner && msg.sender != factory) revert OnlyOwner();
         held = true;
@@ -274,7 +298,13 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
             require(ok, "Tax transfer failed");
         }
 
-        uint256 yubiiFee = (msg.value * FEE_BPS) / 10000;
+        uint256 feeBps = currentFeeBps();
+        {
+            uint256 bd = block.number > lastVolumeBlock ? block.number - lastVolumeBlock : 0;
+            ewmaVolume      = _decayEwma(ewmaVolume, bd) + msg.value;
+            lastVolumeBlock = block.number;
+        }
+        uint256 yubiiFee = (msg.value * feeBps) / 10000;
         if (yubiiFee > 0) {
             yubiiToken.transferFrom(msg.sender, feeRecipient, yubiiFee);
         }
@@ -299,7 +329,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         if (held) revert MatchHeld();
         if (amountIn == 0) revert ZeroAmount();
 
-        uint256 yubiiFee = (amountIn * FEE_BPS) / 10000;
+        uint256 yubiiFee = (amountIn * currentFeeBps()) / 10000;
         if (yubiiFee > 0) {
             yubiiToken.transferFrom(msg.sender, feeRecipient, yubiiFee);
         }
@@ -393,6 +423,24 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         require(ok, "ETH transfer failed");
 
         emit Redeemed(msg.sender, amount, ethOut);
+    }
+
+    // ─────────────────────── dynamic fee ─────────────────────────────────────
+
+    function currentFeeBps() public view returns (uint256) {
+        uint256 blocksDelta = block.number > lastVolumeBlock ? block.number - lastVolumeBlock : 0;
+        uint256 decayed     = _decayEwma(ewmaVolume, blocksDelta);
+        uint256 maxBps      = feeProfile == 0 ? PROFILE_MAX_SOFT
+                            : feeProfile == 1 ? PROFILE_MAX_BALANCED
+                            : PROFILE_MAX_AGGRESSIVE;
+        uint256 fee         = FEE_MIN_BPS + (maxBps - FEE_MIN_BPS) * decayed / FEE_SCALE;
+        return fee > maxBps ? maxBps : fee;
+    }
+
+    function _decayEwma(uint256 ewma, uint256 blocksDelta) internal pure returns (uint256) {
+        if (ewma == 0 || blocksDelta == 0) return ewma;
+        if (blocksDelta >= HALF_LIFE * 7) return 0;
+        return ewma >> (blocksDelta / HALF_LIFE); // halve for each complete half-life elapsed
     }
 
     // ─────────────────────── IUnlockCallback ─────────────────────────────────

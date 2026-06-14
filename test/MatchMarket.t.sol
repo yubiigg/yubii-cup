@@ -46,7 +46,8 @@ contract MatchMarketTest is Test {
             "Liverpool",
             block.timestamp + KICKOFF,
             owner,
-            marketingWallet
+            marketingWallet,
+            1 // BALANCED
         );
         market.initializeLiquidity();
 
@@ -160,12 +161,11 @@ contract MatchMarketTest is Test {
         tA.approve(address(market), tokenBal);
 
         uint256 sellAmt = tokenBal / 2;
+        uint256 expectedFee = (sellAmt * market.currentFeeBps()) / 10000;
         vm.prank(alice);
         market.sell(true, sellAmt, 0);
 
         assertGt(alice.balance, ethBefore); // received ETH
-        // SHOBU fee on sell
-        uint256 expectedFee = (sellAmt * 30) / 10000;
         assertEq(yubii.balanceOf(alice), yubiiBefore - expectedFee);
     }
 
@@ -475,6 +475,77 @@ contract MatchMarketTest is Test {
         assertApproxEqAbs(feeReceived, preFee / 100, 1);
     }
 
+    // ─────────────────────── dynamic fee ─────────────────────────────────────
+
+    function test_feeProfile_defaultIsBalanced() public view {
+        assertEq(market.feeProfile(), 1);
+    }
+
+    function test_currentFeeBps_atMinWhenIdle() public view {
+        // No buys yet → ewmaVolume = 0 → fee = min (30 bps)
+        assertEq(market.currentFeeBps(), 30);
+    }
+
+    function test_currentFeeBps_risesWithVolume() public {
+        vm.prank(alice);
+        market.buy{value: 1 ether}(true, 0); // saturates ewma to 1 ether
+        assertEq(market.currentFeeBps(), 300); // BALANCED max
+    }
+
+    function test_currentFeeBps_clampedAtProfileMax() public {
+        vm.prank(alice);
+        market.buy{value: 10 ether}(true, 0); // far exceeds FEE_SCALE
+        assertEq(market.currentFeeBps(), 300); // still capped at BALANCED max
+    }
+
+    function test_ewmaDecays_afterHalfLife() public {
+        vm.prank(alice);
+        market.buy{value: 1 ether}(true, 0); // fee = 300 (max)
+        assertEq(market.currentFeeBps(), 300);
+
+        vm.roll(block.number + 100); // one half-life → ewma halved
+        // fee = 30 + (300-30) * 0.5 = 165
+        assertApproxEqAbs(market.currentFeeBps(), 165, 5);
+    }
+
+    function test_ewmaDecays_toMinAfterManyBlocks() public {
+        vm.prank(alice);
+        market.buy{value: 1 ether}(true, 0);
+
+        vm.roll(block.number + 700); // 7 half-lives → decay to zero
+        assertEq(market.currentFeeBps(), 30); // back to minimum
+    }
+
+    function test_setFeeProfile_changesMax() public {
+        vm.prank(owner);
+        market.setFeeProfile(2); // AGGRESSIVE
+        assertEq(market.feeProfile(), 2);
+
+        vm.prank(alice);
+        market.buy{value: 1 ether}(true, 0);
+        assertEq(market.currentFeeBps(), 500); // AGGRESSIVE max
+    }
+
+    function test_setFeeProfile_soft() public {
+        vm.prank(owner);
+        market.setFeeProfile(0); // SOFT
+        vm.prank(alice);
+        market.buy{value: 1 ether}(true, 0);
+        assertEq(market.currentFeeBps(), 100); // SOFT max
+    }
+
+    function test_setFeeProfile_revertsInvalid() public {
+        vm.expectRevert(MatchMarket.InvalidFeeProfile.selector);
+        vm.prank(owner);
+        market.setFeeProfile(3);
+    }
+
+    function test_setFeeProfile_revertsNonOwner() public {
+        vm.expectRevert(MatchMarket.OnlyOwner.selector);
+        vm.prank(alice);
+        market.setFeeProfile(2);
+    }
+
     // ─────────────────────── hold / resume / reclaim ─────────────────────────
 
     function test_holdMatch_pausesBuy() public {
@@ -576,7 +647,8 @@ contract MatchMarketTest is Test {
             "Liverpool",
             block.timestamp + KICKOFF,
             owner,
-            marketingWallet
+            marketingWallet,
+            1 // BALANCED
         );
         m.initializeLiquidity();
         vm.prank(alice);

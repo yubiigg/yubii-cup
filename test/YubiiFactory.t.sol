@@ -43,16 +43,17 @@ contract YubiiFactoryTest is Test {
             "Chelsea",
             block.timestamp + 1 days,
             0.1 ether,
-            0
+            0,
+            1 // BALANCED
         );
 
         vm.prank(owner);
-        factory.createMatch{value: 0.1 ether}("Arsenal", "Chelsea", block.timestamp + 1 days);
+        factory.createMatch{value: 0.1 ether}("Arsenal", "Chelsea", block.timestamp + 1 days, 1);
     }
 
     function test_createMatch_storesMarket() public {
         vm.prank(owner);
-        address market = factory.createMatch{value: 0.1 ether}("Arsenal", "Chelsea", block.timestamp + 1 days);
+        address market = factory.createMatch{value: 0.1 ether}("Arsenal", "Chelsea", block.timestamp + 1 days, 1);
 
         assertEq(factory.marketCount(), 1);
         assertEq(factory.markets(0), market);
@@ -61,7 +62,7 @@ contract YubiiFactoryTest is Test {
     function test_createMatch_marketHasCorrectState() public {
         uint256 kickoff = block.timestamp + 2 days;
         vm.prank(owner);
-        address marketAddr = factory.createMatch{value: 0.2 ether}("Real Madrid", "Barcelona", kickoff);
+        address marketAddr = factory.createMatch{value: 0.2 ether}("Real Madrid", "Barcelona", kickoff, 1);
 
         MatchMarket m = MatchMarket(payable(marketAddr));
         assertEq(m.teamA(), "Real Madrid");
@@ -73,9 +74,9 @@ contract YubiiFactoryTest is Test {
 
     function test_createMultipleMatches() public {
         vm.startPrank(owner);
-        factory.createMatch{value: 0.1 ether}("Team1", "Team2", block.timestamp + 1 days);
-        factory.createMatch{value: 0.1 ether}("Team3", "Team4", block.timestamp + 2 days);
-        factory.createMatch{value: 0.1 ether}("Team5", "Team6", block.timestamp + 3 days);
+        factory.createMatch{value: 0.1 ether}("Team1", "Team2", block.timestamp + 1 days, 1);
+        factory.createMatch{value: 0.1 ether}("Team3", "Team4", block.timestamp + 2 days, 1);
+        factory.createMatch{value: 0.1 ether}("Team5", "Team6", block.timestamp + 3 days, 1);
         vm.stopPrank();
 
         assertEq(factory.marketCount(), 3);
@@ -85,13 +86,13 @@ contract YubiiFactoryTest is Test {
         vm.deal(alice, 1 ether);
         vm.expectRevert();
         vm.prank(alice);
-        factory.createMatch{value: 0.1 ether}("Arsenal", "Chelsea", block.timestamp + 1 days);
+        factory.createMatch{value: 0.1 ether}("Arsenal", "Chelsea", block.timestamp + 1 days, 1);
     }
 
     function test_createMatch_revertsNoLiquidity() public {
         vm.expectRevert(YubiiFactory.NoInitialLiquidity.selector);
         vm.prank(owner);
-        factory.createMatch{value: 0}("Arsenal", "Chelsea", block.timestamp + 1 days);
+        factory.createMatch{value: 0}("Arsenal", "Chelsea", block.timestamp + 1 days, 1);
     }
 
     function test_setFeeRecipient() public {
@@ -111,8 +112,8 @@ contract YubiiFactoryTest is Test {
 
     function test_freezeLeague_holdsAllMarkets() public {
         vm.startPrank(owner);
-        address m1 = factory.createMatch{value: 0.1 ether}("USA", "MEX", block.timestamp + 1 days);
-        address m2 = factory.createMatch{value: 0.1 ether}("ENG", "FRA", block.timestamp + 2 days);
+        address m1 = factory.createMatch{value: 0.1 ether}("USA", "MEX", block.timestamp + 1 days, 1);
+        address m2 = factory.createMatch{value: 0.1 ether}("ENG", "FRA", block.timestamp + 2 days, 1);
         factory.freezeLeague();
         vm.stopPrank();
         assertTrue(MatchMarket(payable(m1)).held());
@@ -121,7 +122,7 @@ contract YubiiFactoryTest is Test {
 
     function test_thawLeague_resumesAllMarkets() public {
         vm.startPrank(owner);
-        address m1 = factory.createMatch{value: 0.1 ether}("USA", "MEX", block.timestamp + 1 days);
+        address m1 = factory.createMatch{value: 0.1 ether}("USA", "MEX", block.timestamp + 1 days, 1);
         factory.freezeLeague();
         factory.thawLeague();
         vm.stopPrank();

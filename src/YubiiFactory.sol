@@ -19,7 +19,8 @@ contract YubiiFactory is Ownable {
         string teamB,
         uint256 kickoffTime,
         uint256 initialLiquidity,
-        uint256 marketIndex
+        uint256 marketIndex,
+        uint8 feeProfile
     );
 
     event FeeRecipientUpdated(address indexed oldRecipient, address indexed newRecipient);
@@ -41,7 +42,7 @@ contract YubiiFactory is Ownable {
         marketingWallet = _marketingWallet;
     }
 
-    function createMatch(string calldata teamA, string calldata teamB, uint256 kickoffTime)
+    function createMatch(string calldata teamA, string calldata teamB, uint256 kickoffTime, uint8 feeProfile)
         external
         payable
         onlyOwner
@@ -58,14 +59,15 @@ contract YubiiFactory is Ownable {
             teamB,
             kickoffTime,
             owner(),
-            marketingWallet
+            marketingWallet,
+            feeProfile
         );
 
         m.initializeLiquidity();
         market = address(m);
         markets.push(market);
 
-        emit MatchCreated(market, teamA, teamB, kickoffTime, msg.value, markets.length - 1);
+        emit MatchCreated(market, teamA, teamB, kickoffTime, msg.value, markets.length - 1, feeProfile);
     }
 
     function setFeeRecipient(address newRecipient) external onlyOwner {
