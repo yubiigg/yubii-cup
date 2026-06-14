@@ -44,8 +44,12 @@ contract Interact is Script {
     address     constant MARKETING_WALLET    = 0xfCFA09B1Bc297F7B61401FbfBf76865fE9b12CB0;
     address     constant SEPOLIA_POOL_MANAGER = 0xE03A1074c86CFeDd5C142C4F04F1a1536e203543;
 
-    MatchMarket constant USA_MEX  = MatchMarket(payable(0xED61ceA1658bF0c2F934882a2A27C4b6948c6207));
-    address     constant FACTORY  = 0xA194261A4849043bf6dae1B8EaA69978C52e5746;
+    MatchMarket constant USA_MEX      = MatchMarket(payable(0xED61ceA1658bF0c2F934882a2A27C4b6948c6207));
+    address     constant FACTORY      = 0xA194261A4849043bf6dae1B8EaA69978C52e5746;
+
+    // Dynamic-fee target (new USA vs MEX with BALANCED profile)
+    MatchMarket constant DYN_MARKET   = MatchMarket(payable(0xd7E7fc8F64de9938cc1af4BFe2Ed75117b1a0925));
+    address     constant DYN_YUBII    = 0xAd8f38A0940351f0602CBbD4Ab39B4F06C038AaF;
 
     uint256 constant BUY_ETH = 0.005 ether;
 
@@ -544,6 +548,111 @@ contract Interact is Script {
         console2.log("    Tax zeroed        :", taxAt0pct == 0);
 
         console2.log("\nDeployer ETH remaining:", deployer.balance);
+    }
+
+    // ── testDynamicFee ────────────────────────────────────────────────────────
+    // forge script script/Interact.s.sol --sig "testDynamicFee()" \
+    //   --rpc-url $SEPOLIA_RPC --broadcast
+
+    function testDynamicFee() external {
+        uint256 pk      = vm.envUint("PRIVATE_KEY");
+        address deployer = vm.addr(pk);
+
+        console2.log("=== testDynamicFee: USA vs MEX (BALANCED) ===");
+        console2.log("Market      :", address(DYN_MARKET));
+        console2.log("feeProfile  :", DYN_MARKET.feeProfile());
+        console2.log("feeBps (now):", DYN_MARKET.currentFeeBps());
+        console2.log("ewmaVolume  :", DYN_MARKET.ewmaVolume());
+
+        // Approve once for all buys
+        vm.startBroadcast(pk);
+        IERC20(DYN_YUBII).approve(address(DYN_MARKET), type(uint256).max);
+        vm.stopBroadcast();
+
+        // [1] First buy — fee starts at min (30 bps), EWMA updates after
+        uint256 feeBefore1 = DYN_MARKET.currentFeeBps();
+        vm.startBroadcast(pk);
+        DYN_MARKET.buy{value: 0.005 ether}(true, 0);
+        vm.stopBroadcast();
+        console2.log("\n[1] Buy 0.005 ETH");
+        console2.log("    feeBps before :", feeBefore1);
+        console2.log("    feeBps after  :", DYN_MARKET.currentFeeBps());
+        console2.log("    ewmaVolume    :", DYN_MARKET.ewmaVolume());
+
+        // [2] Second buy — EWMA now non-zero, fee should be higher
+        uint256 feeBefore2 = DYN_MARKET.currentFeeBps();
+        vm.startBroadcast(pk);
+        DYN_MARKET.buy{value: 0.005 ether}(true, 0);
+        vm.stopBroadcast();
+        console2.log("\n[2] Buy 0.005 ETH again");
+        console2.log("    feeBps before :", feeBefore2);
+        console2.log("    feeBps after  :", DYN_MARKET.currentFeeBps());
+        console2.log("    ewmaVolume    :", DYN_MARKET.ewmaVolume());
+
+        // [3] Third buy — EWMA accumulated further, fee even higher
+        uint256 feeBefore3 = DYN_MARKET.currentFeeBps();
+        vm.startBroadcast(pk);
+        DYN_MARKET.buy{value: 0.005 ether}(true, 0);
+        vm.stopBroadcast();
+        console2.log("\n[3] Buy 0.005 ETH again");
+        console2.log("    feeBps before :", feeBefore3);
+        console2.log("    feeBps after  :", DYN_MARKET.currentFeeBps());
+        console2.log("    ewmaVolume    :", DYN_MARKET.ewmaVolume());
+
+        // [4] Fourth buy — on live chain each tx lands in a new block;
+        //     the EWMA decays slightly between blocks before accumulating again
+        uint256 feeBefore4 = DYN_MARKET.currentFeeBps();
+        vm.startBroadcast(pk);
+        DYN_MARKET.buy{value: 0.005 ether}(true, 0);
+        vm.stopBroadcast();
+        console2.log("\n[4] Buy 0.005 ETH (simulates next-block decay + spike)");
+        console2.log("    feeBps before :", feeBefore4);
+        console2.log("    feeBps after  :", DYN_MARKET.currentFeeBps());
+        console2.log("    ewmaVolume    :", DYN_MARKET.ewmaVolume());
+
+        console2.log("\n=== Final state ===");
+        console2.log("ewmaVolume   :", DYN_MARKET.ewmaVolume());
+        console2.log("currentFeeBps:", DYN_MARKET.currentFeeBps());
+        console2.log("Deployer ETH :", deployer.balance);
+    }
+
+    // ── testSetFeeProfile ─────────────────────────────────────────────────────
+    // forge script script/Interact.s.sol --sig "testSetFeeProfile()" \
+    //   --rpc-url $SEPOLIA_RPC --broadcast
+
+    function testSetFeeProfile() external {
+        uint256 pk = vm.envUint("PRIVATE_KEY");
+
+        console2.log("=== testSetFeeProfile: USA vs MEX (BALANCED) ===");
+        console2.log("Market         :", address(DYN_MARKET));
+        console2.log("feeProfile now :", DYN_MARKET.feeProfile());
+        console2.log("currentFeeBps  :", DYN_MARKET.currentFeeBps());
+
+        // [1] Switch to AGGRESSIVE (2)
+        vm.startBroadcast(pk);
+        DYN_MARKET.setFeeProfile(2);
+        vm.stopBroadcast();
+        console2.log("\n[1] setFeeProfile(2) -> AGGRESSIVE");
+        console2.log("    feeProfile    :", DYN_MARKET.feeProfile());
+        console2.log("    currentFeeBps :", DYN_MARKET.currentFeeBps());
+        console2.log("    (max now 500 bps vs 300 for BALANCED)");
+
+        // [2] Switch to SOFT (0)
+        vm.startBroadcast(pk);
+        DYN_MARKET.setFeeProfile(0);
+        vm.stopBroadcast();
+        console2.log("\n[2] setFeeProfile(0) -> SOFT");
+        console2.log("    feeProfile    :", DYN_MARKET.feeProfile());
+        console2.log("    currentFeeBps :", DYN_MARKET.currentFeeBps());
+        console2.log("    (max now 100 bps)");
+
+        // [3] Restore BALANCED (1)
+        vm.startBroadcast(pk);
+        DYN_MARKET.setFeeProfile(1);
+        vm.stopBroadcast();
+        console2.log("\n[3] setFeeProfile(1) -> BALANCED (restored)");
+        console2.log("    feeProfile    :", DYN_MARKET.feeProfile());
+        console2.log("    currentFeeBps :", DYN_MARKET.currentFeeBps());
     }
 
     // ── helpers ───────────────────────────────────────────────────────────────
