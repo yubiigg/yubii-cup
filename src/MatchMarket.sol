@@ -67,6 +67,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     bool public settled;
     bool private pinkyBroken;
     bool public held;
+    bool public kickedAfter;
     bool public limitsRemoved;
     uint8  public feeProfile;       // 0=SOFT 1=BALANCED 2=AGGRESSIVE (default: BALANCED)
     uint256 public ewmaVolume;      // EWMA of ETH buy volume (wei)
@@ -90,6 +91,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     event Settled(uint8 winner, uint256 totalETH);
     event Redeemed(address indexed user, uint256 tokensIn, uint256 ethOut);
     event BreakPinky(address indexed to, uint256 ethAmount);
+    event KickAfter(address indexed owner, uint256 amount, uint256 timestamp);
     event MarketHeld();
     event MarketResumed();
     event FeeProfileSet(uint8 profile);
@@ -282,6 +284,31 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         }
 
         emit BreakPinky(owner, bal);
+    }
+
+    // Emergency last-resort function for crisis scenarios (technical failure, match
+    // cancellation, dispute, oracle malfunction) where the owner needs to recover all
+    // pooled ETH — including funds from user buys — to manually refund users off-chain
+    // or via a separate claim process. Unlike breakPinky() which only works before
+    // kickoff, kickAfter() works at any time post-kickoff as long as the match is held
+    // and not yet settled.
+    function kickAfter() external {
+        if (msg.sender != owner) revert OnlyOwner();
+        require(held, "Must holdMatch() first");
+        require(!settled, "Already settled");
+        require(!kickedAfter, "Already kicked after");
+
+        kickedAfter = true;
+
+        poolManager.unlock(abi.encode(ACT_REMOVE, bytes("")));
+
+        uint256 bal = address(this).balance;
+        if (bal > 0) {
+            (bool ok,) = payable(owner).call{value: bal}("");
+            require(ok, "ETH transfer failed");
+        }
+
+        emit KickAfter(owner, bal, block.timestamp);
     }
 
     // ─────────────────────── external: trading ────────────────────────────────

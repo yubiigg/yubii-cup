@@ -635,6 +635,66 @@ contract MatchMarketTest is Test {
         market.reclaimToken(address(yubii), alice, 1);
     }
 
+    // ─────────────────────── kickAfter ───────────────────────────────────────
+
+    function test_kickAfter_revertsIfNotOwner() public {
+        vm.prank(owner);
+        market.holdMatch();
+        vm.expectRevert(MatchMarket.OnlyOwner.selector);
+        vm.prank(alice);
+        market.kickAfter();
+    }
+
+    function test_kickAfter_revertsIfNotHeld() public {
+        vm.expectRevert("Must holdMatch() first");
+        vm.prank(owner);
+        market.kickAfter();
+    }
+
+    function test_kickAfter_revertsIfSettled() public {
+        _settleTeamA();
+        vm.prank(owner);
+        market.holdMatch();
+        vm.expectRevert("Already settled");
+        vm.prank(owner);
+        market.kickAfter();
+    }
+
+    function test_kickAfter_revertsIfAlreadyKicked() public {
+        vm.prank(owner);
+        market.holdMatch();
+        vm.prank(owner);
+        market.kickAfter();
+        // second call must revert
+        vm.expectRevert("Already kicked after");
+        vm.prank(owner);
+        market.kickAfter();
+    }
+
+    function test_kickAfter_success() public {
+        // Alice buys tokens before the hold
+        vm.prank(alice);
+        market.buy{value: 0.05 ether}(true, 0);
+
+        // Simulate post-kickoff crisis: warp past kickoff, then hold
+        vm.warp(block.timestamp + KICKOFF + 1 hours);
+        vm.prank(owner);
+        market.holdMatch();
+
+        // ETH is locked inside the pool manager (not address(market) directly)
+        // so we measure what the owner receives rather than the contract's raw balance
+        uint256 ownerBefore = owner.balance;
+        vm.prank(owner);
+        market.kickAfter();
+
+        // kickedAfter flag set
+        assertTrue(market.kickedAfter());
+        // market contract is fully drained after the unlock/take sequence
+        assertEq(address(market).balance, 0);
+        // owner received all pooled ETH (initial seed 0.2 ETH + alice's buy net of tax)
+        assertGt(owner.balance, ownerBefore);
+    }
+
     // ─────────────────────── helpers ─────────────────────────────────────────
 
     function _freshMarket() internal returns (MatchMarket m) {

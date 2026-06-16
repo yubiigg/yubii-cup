@@ -10,7 +10,8 @@ import {YubiiFactory} from "../src/YubiiFactory.sol";
 // Supports Sepolia (11155111) and Mainnet (1); reverts on any other chain.
 //
 // Required .env variables:
-//   PRIVATE_KEY   — deployer private key (needs >= 0.4 ETH + gas on mainnet)
+//   PRIVATE_KEY          — deployer key for Sepolia
+//   MAINNET_PRIVATE_KEY  — deployer key for Mainnet (single wallet: owner + marketing + fee recipient)
 //
 // Sepolia:
 //   forge script script/Deploy.s.sol \
@@ -65,7 +66,9 @@ contract Deploy is Script {
             revert("Unsupported chain: use mainnet (1) or Sepolia (11155111)");
         }
 
-        uint256 deployerKey = vm.envUint("PRIVATE_KEY");
+        uint256 deployerKey = chainId == CHAIN_MAINNET
+            ? vm.envUint("MAINNET_PRIVATE_KEY")
+            : vm.envUint("PRIVATE_KEY");
         address deployer    = vm.addr(deployerKey);
 
         // Sepolia: kickoffs relative to deployment for easy testing
@@ -92,14 +95,14 @@ contract Deploy is Script {
         YubiiToken yubii = new YubiiToken(deployer);
         console2.log("\nYubiiToken  :", address(yubii));
 
-        // 2. Deploy factory (fee recipient = deployer)
+        // 2. Deploy factory — single-wallet model: deployer is owner, fee recipient, and marketing wallet
         YubiiFactory factory = new YubiiFactory(
             poolManager,
             address(yubii),
             umaOov3,
-            deployer,                                        // fee recipient
-            deployer,                                        // owner
-            0xfCFA09B1Bc297F7B61401FbfBf76865fE9b12CB0     // marketingWallet
+            deployer,   // fee recipient
+            deployer,   // owner
+            deployer    // marketingWallet
         );
         console2.log("YubiiFactory:", address(factory));
 
