@@ -115,6 +115,8 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     error BuyLimitExceeded();
     error TaxTooHigh();
     error MatchHeld();
+    error NotHeld();
+    error AlreadyKickedAfter();
     error CannotReclaimOutcomeToken();
     error InvalidFeeProfile();
 
@@ -271,19 +273,8 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         if (settled) revert MarketSettled();
         if (pinkyBroken) revert PinkyBroken();
         if (block.timestamp >= kickoffTime) revert KickoffPassed();
-
         pinkyBroken = true;
-
-        // Remove all LP; _takeRemoved burns any returned outcome tokens
-        poolManager.unlock(abi.encode(ACT_REMOVE, bytes("")));
-
-        uint256 bal = address(this).balance;
-        if (bal > 0) {
-            (bool ok,) = payable(owner).call{value: bal}("");
-            require(ok, "ETH transfer failed");
-        }
-
-        emit BreakPinky(owner, bal);
+        emit BreakPinky(owner, _drainAndSweep());
     }
 
     // Emergency last-resort function for crisis scenarios (technical failure, match
@@ -294,21 +285,21 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     // and not yet settled.
     function kickAfter() external {
         if (msg.sender != owner) revert OnlyOwner();
-        require(held, "Must holdMatch() first");
-        require(!settled, "Already settled");
-        require(!kickedAfter, "Already kicked after");
-
+        if (!held) revert NotHeld();
+        if (settled) revert MarketSettled();
+        if (kickedAfter) revert AlreadyKickedAfter();
         kickedAfter = true;
+        emit KickAfter(owner, _drainAndSweep(), block.timestamp);
+    }
 
+    /// Removes all LP from both pools and sweeps the resulting ETH balance to owner.
+    function _drainAndSweep() internal returns (uint256 bal) {
         poolManager.unlock(abi.encode(ACT_REMOVE, bytes("")));
-
-        uint256 bal = address(this).balance;
+        bal = address(this).balance;
         if (bal > 0) {
             (bool ok,) = payable(owner).call{value: bal}("");
             require(ok, "ETH transfer failed");
         }
-
-        emit KickAfter(owner, bal, block.timestamp);
     }
 
     // ─────────────────────── external: trading ────────────────────────────────

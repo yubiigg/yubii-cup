@@ -646,7 +646,7 @@ contract MatchMarketTest is Test {
     }
 
     function test_kickAfter_revertsIfNotHeld() public {
-        vm.expectRevert("Must holdMatch() first");
+        vm.expectRevert(MatchMarket.NotHeld.selector);
         vm.prank(owner);
         market.kickAfter();
     }
@@ -655,7 +655,7 @@ contract MatchMarketTest is Test {
         _settleTeamA();
         vm.prank(owner);
         market.holdMatch();
-        vm.expectRevert("Already settled");
+        vm.expectRevert(MatchMarket.MarketSettled.selector);
         vm.prank(owner);
         market.kickAfter();
     }
@@ -666,7 +666,7 @@ contract MatchMarketTest is Test {
         vm.prank(owner);
         market.kickAfter();
         // second call must revert
-        vm.expectRevert("Already kicked after");
+        vm.expectRevert(MatchMarket.AlreadyKickedAfter.selector);
         vm.prank(owner);
         market.kickAfter();
     }
