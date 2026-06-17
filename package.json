@@ -1,0 +1,8 @@
+{
+  "name": "shobu-cup",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "generate-matches": "node scripts/generate-matches-json.mjs"
+  }
+}

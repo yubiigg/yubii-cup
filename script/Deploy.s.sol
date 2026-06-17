@@ -33,6 +33,14 @@ contract Deploy is Script {
     uint256 constant CHAIN_MAINNET = 1;
     uint256 constant CHAIN_SEPOLIA = 11155111;
 
+    // ── CREATE2 salts — identical addresses on every EVM chain ───────────────
+    // Foundry routes {salt: ...} deployments through the canonical CREATE2 factory
+    // (0x4e59b44847b379578588920ca78fbf26c0b4956c) in broadcast mode, guaranteeing
+    // the same YubiiToken and YubiiFactory addresses on Ethereum, Base, Arbitrum,
+    // and any future L2 without redeploying from scratch.
+    bytes32 constant SALT_TOKEN   = keccak256("yubii-token-v1");
+    bytes32 constant SALT_FACTORY = keccak256("yubii-factory-v1");
+
     // ── Mainnet addresses ─────────────────────────────────────────────────────
     address constant MAINNET_POOL_MANAGER = 0x000000000004444c5dc75cB358380D2e3dE08A90;
     address constant MAINNET_UMA_OO_V3    = 0x88Ad27C41AD06f01153E7Cd9b10cBEdF4616f4d5;
@@ -87,16 +95,34 @@ contract Deploy is Script {
         console2.log("UMA OO v3   :", umaOov3);
         console2.log("ETH needed  : 0.08 ETH + gas");
 
+        // Predict deterministic addresses using the canonical CREATE2 factory.
+        // These will match on-chain addresses in broadcast mode. Re-deploying with
+        // the same salts on any chain reproduces these exact addresses.
+        address predictedToken = vm.computeCreate2Address(
+            SALT_TOKEN,
+            keccak256(abi.encodePacked(type(YubiiToken).creationCode, abi.encode(deployer)))
+        );
+        address predictedFactory = vm.computeCreate2Address(
+            SALT_FACTORY,
+            keccak256(abi.encodePacked(
+                type(YubiiFactory).creationCode,
+                abi.encode(poolManager, predictedToken, umaOov3, deployer, deployer, deployer)
+            ))
+        );
+        console2.log("\n--- CREATE2 predicted addresses ---");
+        console2.log("YubiiToken   (predicted):", predictedToken);
+        console2.log("YubiiFactory (predicted):", predictedFactory);
+
         require(deployer.balance >= 0.08 ether, "Insufficient ETH: need at least 0.08 ETH");
 
         vm.startBroadcast(deployerKey);
 
-        // 1. Deploy governance token
-        YubiiToken yubii = new YubiiToken(deployer);
+        // 1. Deploy governance token via CREATE2 (deterministic address, collision-safe)
+        YubiiToken yubii = new YubiiToken{salt: SALT_TOKEN}(deployer);
         console2.log("\nYubiiToken  :", address(yubii));
 
-        // 2. Deploy factory — single-wallet model: deployer is owner, fee recipient, and marketing wallet
-        YubiiFactory factory = new YubiiFactory(
+        // 2. Deploy factory via CREATE2 — single-wallet model: deployer is owner, fee recipient, and marketing wallet
+        YubiiFactory factory = new YubiiFactory{salt: SALT_FACTORY}(
             poolManager,
             address(yubii),
             umaOov3,

@@ -1,0 +1,666 @@
+No files changed, compilation skipped
+Traces:
+  [4152470] → new MultiUserTest@0x9f7cF1d1F558E57ef88a59ac3D47214eF25B6A06
+    └─ ← [Return] 20628 bytes of code
+
+  [17857777] MultiUserTest::run()
+    ├─ [0] VM::envOr("YUBII_TOKEN", 0xAd8f38A0940351f0602CBbD4Ab39B4F06C038AaF) [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envOr("YUBII_FACTORY", 0x38Df9f316abb91163Fbfd6eaB048DC357BA384A8) [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("PRIVATE_KEY") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x05D811E04db174333402539AF50531312AbFd158
+    ├─ [2417] 0x89258f46c6bbDaC2EaE6d179a266B74DD2a5c206::owner() [staticcall]
+    │   └─ ← [Return] 0x05D811E04db174333402539AF50531312AbFd158
+    ├─ [0] VM::toString(0x05D811E04db174333402539AF50531312AbFd158) [staticcall]
+    │   └─ ← [Return] "0x05D811E04db174333402539AF50531312AbFd158"
+    ├─ [0] VM::toString(0x05D811E04db174333402539AF50531312AbFd158) [staticcall]
+    │   └─ ← [Return] "0x05D811E04db174333402539AF50531312AbFd158"
+    ├─ [2515] YubiiToken::balanceOf(0x05D811E04db174333402539AF50531312AbFd158) [staticcall]
+    │   └─ ← [Return] 1000000000000000000000000000 [1e27]
+    ├─ [0] VM::toString(1000000000000000000000000000 [1e27]) [staticcall]
+    │   └─ ← [Return] "1000000000000000000000000000"
+    ├─ [0] VM::toString(50000000000000000000 [5e19]) [staticcall]
+    │   └─ ← [Return] "50000000000000000000"
+    ├─ [0] VM::deriveKey(<pk>) [staticcall]
+    │   └─ ← [Return] <pk>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+    ├─ [0] VM::deriveKey(<pk>) [staticcall]
+    │   └─ ← [Return] <pk>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+    ├─ [0] VM::deriveKey(<pk>) [staticcall]
+    │   └─ ← [Return] <pk>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+    ├─ [0] VM::deriveKey(<pk>) [staticcall]
+    │   └─ ← [Return] <pk>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x90F79bf6EB2c4f870365E785982E1f101E93b906
+    ├─ [0] VM::deriveKey(<pk>) [staticcall]
+    │   └─ ← [Return] <pk>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65
+    ├─ [0] VM::deriveKey(<pk>) [staticcall]
+    │   └─ ← [Return] <pk>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
+    ├─ [0] VM::deriveKey(<pk>) [staticcall]
+    │   └─ ← [Return] <pk>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x976EA74026E726554dB657fA54763abd0C3a0aa9
+    ├─ [0] VM::deriveKey(<pk>) [staticcall]
+    │   └─ ← [Return] <pk>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955
+    ├─ [0] VM::deriveKey(<pk>) [staticcall]
+    │   └─ ← [Return] <pk>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f
+    ├─ [0] VM::deriveKey(<pk>) [staticcall]
+    │   └─ ← [Return] <pk>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720
+    ├─ [0] console::log("+==========================================+") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("   YUBII CUP -- MULTI-USER SEPOLIA TEST    ") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("+==========================================+") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("Deployer  :", 0x05D811E04db174333402539AF50531312AbFd158) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("Balance   :", 400296713760139593 [4.002e17]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("\n--- 10 Test Wallets (BIP-44 from Foundry test mnemonic) ---") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::toString(1) [staticcall]
+    │   └─ ← [Return] "1"
+    ├─ [0] console::log("  Wallet 1 :", 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::toString(2) [staticcall]
+    │   └─ ← [Return] "2"
+    ├─ [0] console::log("  Wallet 2 :", 0x70997970C51812dc3A010C7d01b50e0d17dc79C8) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::toString(3) [staticcall]
+    │   └─ ← [Return] "3"
+    ├─ [0] console::log("  Wallet 3 :", 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::toString(4) [staticcall]
+    │   └─ ← [Return] "4"
+    ├─ [0] console::log("  Wallet 4 :", 0x90F79bf6EB2c4f870365E785982E1f101E93b906) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::toString(5) [staticcall]
+    │   └─ ← [Return] "5"
+    ├─ [0] console::log("  Wallet 5 :", 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::toString(6) [staticcall]
+    │   └─ ← [Return] "6"
+    ├─ [0] console::log("  Wallet 6 :", 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::toString(7) [staticcall]
+    │   └─ ← [Return] "7"
+    ├─ [0] console::log("  Wallet 7 :", 0x976EA74026E726554dB657fA54763abd0C3a0aa9) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::toString(8) [staticcall]
+    │   └─ ← [Return] "8"
+    ├─ [0] console::log("  Wallet 8 :", 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::toString(9) [staticcall]
+    │   └─ ← [Return] "9"
+    ├─ [0] console::log("  Wallet 9 :", 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::toString(10) [staticcall]
+    │   └─ ← [Return] "10"
+    ├─ [0] console::log("  Wallet 10 :", 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [0] console::log("\n--- Funding 10 wallets: 0.008 ETH + 5 YUBII each ---") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [9682] 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266::fallback{value: 8000000000000000}()
+    │   ├─ [0] 0xC8fE17824bdf7C0FdF7fB63D9F4D0b161a73C2a8::fallback{value: 8000000000000000}()
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [27674] YubiiToken::transfer(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, 5000000000000000000 [5e18])
+    │   ├─ emit Transfer(from: 0x05D811E04db174333402539AF50531312AbFd158, to: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, value: 5000000000000000000 [5e18])
+    │   └─ ← [Return] true
+    ├─ [7182] 0x70997970C51812dc3A010C7d01b50e0d17dc79C8::fallback{value: 8000000000000000}()
+    │   ├─ [0] 0xC8fE17824bdf7C0FdF7fB63D9F4D0b161a73C2a8::fallback{value: 8000000000000000}()
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [24874] YubiiToken::transfer(0x70997970C51812dc3A010C7d01b50e0d17dc79C8, 5000000000000000000 [5e18])
+    │   ├─ emit Transfer(from: 0x05D811E04db174333402539AF50531312AbFd158, to: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8, value: 5000000000000000000 [5e18])
+    │   └─ ← [Return] true
+    ├─ [7182] 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC::fallback{value: 8000000000000000}()
+    │   ├─ [0] 0xC8fE17824bdf7C0FdF7fB63D9F4D0b161a73C2a8::fallback{value: 8000000000000000}()
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [24874] YubiiToken::transfer(0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC, 5000000000000000000 [5e18])
+    │   ├─ emit Transfer(from: 0x05D811E04db174333402539AF50531312AbFd158, to: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC, value: 5000000000000000000 [5e18])
+    │   └─ ← [Return] true
+    ├─ [7182] 0x90F79bf6EB2c4f870365E785982E1f101E93b906::fallback{value: 8000000000000000}()
+    │   ├─ [0] 0xC8fE17824bdf7C0FdF7fB63D9F4D0b161a73C2a8::fallback{value: 8000000000000000}()
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [24874] YubiiToken::transfer(0x90F79bf6EB2c4f870365E785982E1f101E93b906, 5000000000000000000 [5e18])
+    │   ├─ emit Transfer(from: 0x05D811E04db174333402539AF50531312AbFd158, to: 0x90F79bf6EB2c4f870365E785982E1f101E93b906, value: 5000000000000000000 [5e18])
+    │   └─ ← [Return] true
+    ├─ [7182] 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65::fallback{value: 8000000000000000}()
+    │   ├─ [0] 0xC8fE17824bdf7C0FdF7fB63D9F4D0b161a73C2a8::fallback{value: 8000000000000000}()
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [24874] YubiiToken::transfer(0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65, 5000000000000000000 [5e18])
+    │   ├─ emit Transfer(from: 0x05D811E04db174333402539AF50531312AbFd158, to: 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65, value: 5000000000000000000 [5e18])
+    │   └─ ← [Return] true
+    ├─ [7182] 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc::fallback{value: 8000000000000000}()
+    │   ├─ [0] 0xC8fE17824bdf7C0FdF7fB63D9F4D0b161a73C2a8::fallback{value: 8000000000000000}()
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [24874] YubiiToken::transfer(0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc, 5000000000000000000 [5e18])
+    │   ├─ emit Transfer(from: 0x05D811E04db174333402539AF50531312AbFd158, to: 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc, value: 5000000000000000000 [5e18])
+    │   └─ ← [Return] true
+    ├─ [7182] 0x976EA74026E726554dB657fA54763abd0C3a0aa9::fallback{value: 8000000000000000}()
+    │   ├─ [0] 0xC8fE17824bdf7C0FdF7fB63D9F4D0b161a73C2a8::fallback{value: 8000000000000000}()
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [24874] YubiiToken::transfer(0x976EA74026E726554dB657fA54763abd0C3a0aa9, 5000000000000000000 [5e18])
+    │   ├─ emit Transfer(from: 0x05D811E04db174333402539AF50531312AbFd158, to: 0x976EA74026E726554dB657fA54763abd0C3a0aa9, value: 5000000000000000000 [5e18])
+    │   └─ ← [Return] true
+    ├─ [7182] 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955::fallback{value: 8000000000000000}()
+    │   ├─ [0] 0xC8fE17824bdf7C0FdF7fB63D9F4D0b161a73C2a8::fallback{value: 8000000000000000}()
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [24874] YubiiToken::transfer(0x14dC79964da2C08b23698B3D3cc7Ca32193d9955, 5000000000000000000 [5e18])
+    │   ├─ emit Transfer(from: 0x05D811E04db174333402539AF50531312AbFd158, to: 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955, value: 5000000000000000000 [5e18])
+    │   └─ ← [Return] true
+    ├─ [7182] 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f::fallback{value: 8000000000000000}()
+    │   ├─ [0] 0xC8fE17824bdf7C0FdF7fB63D9F4D0b161a73C2a8::fallback{value: 8000000000000000}()
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [24874] YubiiToken::transfer(0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f, 5000000000000000000 [5e18])
+    │   ├─ emit Transfer(from: 0x05D811E04db174333402539AF50531312AbFd158, to: 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f, value: 5000000000000000000 [5e18])
+    │   └─ ← [Return] true
+    ├─ [10867] 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720::fallback{value: 8000000000000000}()
+    │   ├─ [0] 0xCf622433D1739dB259904867992e572f48A7bd42::fallback{value: 8000000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ emit NativeForwarded(: 8000000000000000 [8e15])
+    │   └─ ← [Stop]
+    ├─ [24874] YubiiToken::transfer(0xa0Ee7A142d267C1f36714E4a8F75612F20a79720, 5000000000000000000 [5e18])
+    │   ├─ emit Transfer(from: 0x05D811E04db174333402539AF50531312AbFd158, to: 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720, value: 5000000000000000000 [5e18])
+    │   └─ ← [Return] true
+    ├─ [0] console::log("  Done. Total distributed: 0.08 ETH + 50 YUBII") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [5193719] 0x89258f46c6bbDaC2EaE6d179a266B74DD2a5c206::createMatch{value: 20000000000000000}("France", "Germany", 1782230436 [1.782e9], 1)
+    │   ├─ [4579250] → new MatchMarket@0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db
+    │   │   ├─ [458037] → new OutcomeToken@0x80ADF1a82bc2730A069559d030BC389CEA624EE4
+    │   │   │   └─ ← [Return] 2056 bytes of code
+    │   │   ├─ [458037] → new OutcomeToken@0x6AD575E50f0a0007a3Ee1c4efed32510Ab6A0316
+    │   │   │   └─ ← [Return] 2056 bytes of code
+    │   │   ├─ [29172] PoolManager::initialize(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x80ADF1a82bc2730A069559d030BC389CEA624EE4, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), 79228162514264337593543950336 [7.922e28])
+    │   │   │   ├─ emit Initialize(id: 0x0bccf68502d65d73e83909728d91fd01202762990b3665c6848fd4ef95af27c7, currency0: 0x0000000000000000000000000000000000000000, currency1: OutcomeToken: [0x80ADF1a82bc2730A069559d030BC389CEA624EE4], fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000, sqrtPriceX96: 79228162514264337593543950336 [7.922e28], tick: 0)
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [29172] PoolManager::initialize(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x6AD575E50f0a0007a3Ee1c4efed32510Ab6A0316, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), 79228162514264337593543950336 [7.922e28])
+    │   │   │   ├─ emit Initialize(id: 0xeec4f12c3b1043ab8b0395df6feb08ec5bb226a7e1dca9cddeedeff4612c9e8f, currency0: 0x0000000000000000000000000000000000000000, currency1: OutcomeToken: [0x6AD575E50f0a0007a3Ee1c4efed32510Ab6A0316], fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000, sqrtPriceX96: 79228162514264337593543950336 [7.922e28], tick: 0)
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Return] 16357 bytes of code
+    │   ├─ [538091] MatchMarket::initializeLiquidity()
+    │   │   ├─ [46510] OutcomeToken::mint(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 10000000000000000 [1e16])
+    │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 10000000000000000 [1e16])
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [46510] OutcomeToken::mint(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 10000000000000000 [1e16])
+    │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 10000000000000000 [1e16])
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [441301] PoolManager::unlock(0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000)
+    │   │   │   ├─ [439318] MatchMarket::unlockCallback(0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000)
+    │   │   │   │   ├─ [164250] PoolManager::modifyLiquidity(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x80ADF1a82bc2730A069559d030BC389CEA624EE4, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), ModifyLiquidityParams({ tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000 }), 0x)
+    │   │   │   │   │   ├─ emit ModifyLiquidity(id: 0x0bccf68502d65d73e83909728d91fd01202762990b3665c6848fd4ef95af27c7, sender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000)
+    │   │   │   │   │   └─ ← [Return] -3402823669209384294351379153379218651195392568231788544 [-3.402e54], 0
+    │   │   │   │   ├─ [1273] PoolManager::settle{value: 10000000000000000}()
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   ├─ [3910] PoolManager::sync(OutcomeToken: [0x80ADF1a82bc2730A069559d030BC389CEA624EE4])
+    │   │   │   │   │   ├─ [2537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   │   └─ ← [Stop]
+    │   │   │   │   ├─ [22874] OutcomeToken::transfer(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], 10000000000000000 [1e16])
+    │   │   │   │   │   ├─ emit Transfer(from: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], to: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], value: 10000000000000000 [1e16])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   ├─ [2511] PoolManager::settle()
+    │   │   │   │   │   ├─ [537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   ├─ [164250] PoolManager::modifyLiquidity(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x6AD575E50f0a0007a3Ee1c4efed32510Ab6A0316, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), ModifyLiquidityParams({ tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000 }), 0x)
+    │   │   │   │   │   ├─ emit ModifyLiquidity(id: 0xeec4f12c3b1043ab8b0395df6feb08ec5bb226a7e1dca9cddeedeff4612c9e8f, sender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000)
+    │   │   │   │   │   └─ ← [Return] -3402823669209384294351379153379218651195392568231788544 [-3.402e54], 0
+    │   │   │   │   ├─ [1273] PoolManager::settle{value: 10000000000000000}()
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   ├─ [3910] PoolManager::sync(OutcomeToken: [0x6AD575E50f0a0007a3Ee1c4efed32510Ab6A0316])
+    │   │   │   │   │   ├─ [2537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   │   └─ ← [Stop]
+    │   │   │   │   ├─ [22874] OutcomeToken::transfer(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], 10000000000000000 [1e16])
+    │   │   │   │   │   ├─ emit Transfer(from: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], to: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], value: 10000000000000000 [1e16])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   ├─ [2511] PoolManager::settle()
+    │   │   │   │   │   ├─ [537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   └─ ← [Return] 0x
+    │   │   │   └─ ← [Return] 0x
+    │   │   └─ ← [Return]
+    │   ├─ emit MatchCreated(market: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], teamA: "France", teamB: "Germany", kickoffTime: 1782230436 [1.782e9], initialLiquidity: 20000000000000000 [2e16], marketIndex: 4, feeProfile: 1)
+    │   └─ ← [Return] MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db]
+    ├─ [672] MatchMarket::removeLimits()
+    │   └─ ← [Stop]
+    ├─ [1106] MatchMarket::reduceTax(30, 30)
+    │   └─ ← [Stop]
+    ├─ [5182419] 0x89258f46c6bbDaC2EaE6d179a266B74DD2a5c206::createMatch{value: 20000000000000000}("Portugal", "Spain", 1782230436 [1.782e9], 0)
+    │   ├─ [4556850] → new MatchMarket@0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757
+    │   │   ├─ [458037] → new OutcomeToken@0x685Ecd5c4144D7FE10d707e45373342d327dd17B
+    │   │   │   └─ ← [Return] 2056 bytes of code
+    │   │   ├─ [458037] → new OutcomeToken@0x1430ac51751D89596cDB2FA5f008052736391D5f
+    │   │   │   └─ ← [Return] 2056 bytes of code
+    │   │   ├─ [29172] PoolManager::initialize(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x685Ecd5c4144D7FE10d707e45373342d327dd17B, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), 79228162514264337593543950336 [7.922e28])
+    │   │   │   ├─ emit Initialize(id: 0x3e5a93099d0c6e56ed300eca621ecd66dfeb067d45f69d8d25a671546af8808f, currency0: 0x0000000000000000000000000000000000000000, currency1: OutcomeToken: [0x685Ecd5c4144D7FE10d707e45373342d327dd17B], fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000, sqrtPriceX96: 79228162514264337593543950336 [7.922e28], tick: 0)
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [29172] PoolManager::initialize(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x1430ac51751D89596cDB2FA5f008052736391D5f, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), 79228162514264337593543950336 [7.922e28])
+    │   │   │   ├─ emit Initialize(id: 0x40af1fd4224f532af0c4abcf42b9f3f2f211cfc1b5c07117943fe126ae4500b7, currency0: 0x0000000000000000000000000000000000000000, currency1: OutcomeToken: [0x1430ac51751D89596cDB2FA5f008052736391D5f], fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000, sqrtPriceX96: 79228162514264337593543950336 [7.922e28], tick: 0)
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Return] 16357 bytes of code
+    │   ├─ [557991] MatchMarket::initializeLiquidity()
+    │   │   ├─ [46510] OutcomeToken::mint(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 10000000000000000 [1e16])
+    │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 10000000000000000 [1e16])
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [46510] OutcomeToken::mint(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 10000000000000000 [1e16])
+    │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 10000000000000000 [1e16])
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [441301] PoolManager::unlock(0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000)
+    │   │   │   ├─ [439318] MatchMarket::unlockCallback(0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000)
+    │   │   │   │   ├─ [164250] PoolManager::modifyLiquidity(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x685Ecd5c4144D7FE10d707e45373342d327dd17B, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), ModifyLiquidityParams({ tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000 }), 0x)
+    │   │   │   │   │   ├─ emit ModifyLiquidity(id: 0x3e5a93099d0c6e56ed300eca621ecd66dfeb067d45f69d8d25a671546af8808f, sender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000)
+    │   │   │   │   │   └─ ← [Return] -3402823669209384294351379153379218651195392568231788544 [-3.402e54], 0
+    │   │   │   │   ├─ [1273] PoolManager::settle{value: 10000000000000000}()
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   ├─ [3910] PoolManager::sync(OutcomeToken: [0x685Ecd5c4144D7FE10d707e45373342d327dd17B])
+    │   │   │   │   │   ├─ [2537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   │   └─ ← [Stop]
+    │   │   │   │   ├─ [22874] OutcomeToken::transfer(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], 10000000000000000 [1e16])
+    │   │   │   │   │   ├─ emit Transfer(from: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], to: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], value: 10000000000000000 [1e16])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   ├─ [2511] PoolManager::settle()
+    │   │   │   │   │   ├─ [537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   ├─ [164250] PoolManager::modifyLiquidity(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x1430ac51751D89596cDB2FA5f008052736391D5f, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), ModifyLiquidityParams({ tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000 }), 0x)
+    │   │   │   │   │   ├─ emit ModifyLiquidity(id: 0x40af1fd4224f532af0c4abcf42b9f3f2f211cfc1b5c07117943fe126ae4500b7, sender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000)
+    │   │   │   │   │   └─ ← [Return] -3402823669209384294351379153379218651195392568231788544 [-3.402e54], 0
+    │   │   │   │   ├─ [1273] PoolManager::settle{value: 10000000000000000}()
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   ├─ [3910] PoolManager::sync(OutcomeToken: [0x1430ac51751D89596cDB2FA5f008052736391D5f])
+    │   │   │   │   │   ├─ [2537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   │   └─ ← [Stop]
+    │   │   │   │   ├─ [22874] OutcomeToken::transfer(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], 10000000000000000 [1e16])
+    │   │   │   │   │   ├─ emit Transfer(from: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], to: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], value: 10000000000000000 [1e16])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   ├─ [2511] PoolManager::settle()
+    │   │   │   │   │   ├─ [537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   └─ ← [Return] 0x
+    │   │   │   └─ ← [Return] 0x
+    │   │   └─ ← [Return]
+    │   ├─ emit MatchCreated(market: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], teamA: "Portugal", teamB: "Spain", kickoffTime: 1782230436 [1.782e9], initialLiquidity: 20000000000000000 [2e16], marketIndex: 5, feeProfile: 0)
+    │   └─ ← [Return] MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757]
+    ├─ [672] MatchMarket::removeLimits()
+    │   └─ ← [Stop]
+    ├─ [1106] MatchMarket::reduceTax(30, 30)
+    │   └─ ← [Stop]
+    ├─ [5182419] 0x89258f46c6bbDaC2EaE6d179a266B74DD2a5c206::createMatch{value: 20000000000000000}("Italy", "Netherlands", 1782230436 [1.782e9], 1)
+    │   ├─ [4576750] → new MatchMarket@0x3663fd6F86388232a1Fb346b37649f7a7e5f2599
+    │   │   ├─ [458037] → new OutcomeToken@0x5B434768E9A3d5aB971e55F13aB2b3ed84b5A1C3
+    │   │   │   └─ ← [Return] 2056 bytes of code
+    │   │   ├─ [458037] → new OutcomeToken@0x0E810BB78d7ADC50932dF559AA721293412b8a57
+    │   │   │   └─ ← [Return] 2056 bytes of code
+    │   │   ├─ [29172] PoolManager::initialize(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x5B434768E9A3d5aB971e55F13aB2b3ed84b5A1C3, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), 79228162514264337593543950336 [7.922e28])
+    │   │   │   ├─ emit Initialize(id: 0xd9f9d53f2cd4eabf66940357d70ba26cd599f0d62a19f0ba48d6bcd777e13d8c, currency0: 0x0000000000000000000000000000000000000000, currency1: OutcomeToken: [0x5B434768E9A3d5aB971e55F13aB2b3ed84b5A1C3], fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000, sqrtPriceX96: 79228162514264337593543950336 [7.922e28], tick: 0)
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [29172] PoolManager::initialize(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x0E810BB78d7ADC50932dF559AA721293412b8a57, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), 79228162514264337593543950336 [7.922e28])
+    │   │   │   ├─ emit Initialize(id: 0x48ca46961feb3cb8987a7378accac9f0093297b4419824221dffc4209fdf7cc0, currency0: 0x0000000000000000000000000000000000000000, currency1: OutcomeToken: [0x0E810BB78d7ADC50932dF559AA721293412b8a57], fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000, sqrtPriceX96: 79228162514264337593543950336 [7.922e28], tick: 0)
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Return] 16357 bytes of code
+    │   ├─ [538091] MatchMarket::initializeLiquidity()
+    │   │   ├─ [46510] OutcomeToken::mint(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 10000000000000000 [1e16])
+    │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 10000000000000000 [1e16])
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [46510] OutcomeToken::mint(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 10000000000000000 [1e16])
+    │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 10000000000000000 [1e16])
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [441301] PoolManager::unlock(0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000)
+    │   │   │   ├─ [439318] MatchMarket::unlockCallback(0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000)
+    │   │   │   │   ├─ [164250] PoolManager::modifyLiquidity(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x5B434768E9A3d5aB971e55F13aB2b3ed84b5A1C3, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), ModifyLiquidityParams({ tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000 }), 0x)
+    │   │   │   │   │   ├─ emit ModifyLiquidity(id: 0xd9f9d53f2cd4eabf66940357d70ba26cd599f0d62a19f0ba48d6bcd777e13d8c, sender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000)
+    │   │   │   │   │   └─ ← [Return] -3402823669209384294351379153379218651195392568231788544 [-3.402e54], 0
+    │   │   │   │   ├─ [1273] PoolManager::settle{value: 10000000000000000}()
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   ├─ [3910] PoolManager::sync(OutcomeToken: [0x5B434768E9A3d5aB971e55F13aB2b3ed84b5A1C3])
+    │   │   │   │   │   ├─ [2537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   │   └─ ← [Stop]
+    │   │   │   │   ├─ [22874] OutcomeToken::transfer(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], 10000000000000000 [1e16])
+    │   │   │   │   │   ├─ emit Transfer(from: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], to: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], value: 10000000000000000 [1e16])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   ├─ [2511] PoolManager::settle()
+    │   │   │   │   │   ├─ [537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   ├─ [164250] PoolManager::modifyLiquidity(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x0E810BB78d7ADC50932dF559AA721293412b8a57, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), ModifyLiquidityParams({ tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000 }), 0x)
+    │   │   │   │   │   ├─ emit ModifyLiquidity(id: 0x48ca46961feb3cb8987a7378accac9f0093297b4419824221dffc4209fdf7cc0, sender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000)
+    │   │   │   │   │   └─ ← [Return] -3402823669209384294351379153379218651195392568231788544 [-3.402e54], 0
+    │   │   │   │   ├─ [1273] PoolManager::settle{value: 10000000000000000}()
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   ├─ [3910] PoolManager::sync(OutcomeToken: [0x0E810BB78d7ADC50932dF559AA721293412b8a57])
+    │   │   │   │   │   ├─ [2537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   │   └─ ← [Stop]
+    │   │   │   │   ├─ [22874] OutcomeToken::transfer(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], 10000000000000000 [1e16])
+    │   │   │   │   │   ├─ emit Transfer(from: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], to: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], value: 10000000000000000 [1e16])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   ├─ [2511] PoolManager::settle()
+    │   │   │   │   │   ├─ [537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   └─ ← [Return] 0x
+    │   │   │   └─ ← [Return] 0x
+    │   │   └─ ← [Return]
+    │   ├─ emit MatchCreated(market: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], teamA: "Italy", teamB: "Netherlands", kickoffTime: 1782230436 [1.782e9], initialLiquidity: 20000000000000000 [2e16], marketIndex: 6, feeProfile: 1)
+    │   └─ ← [Return] MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599]
+    ├─ [672] MatchMarket::removeLimits()
+    │   └─ ← [Stop]
+    ├─ [1106] MatchMarket::reduceTax(30, 30)
+    │   └─ ← [Stop]
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] console::log("\n--- Markets deployed ---") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("M1 FRA/GER :", MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("M2 POR/ESP :", MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("M3 ITA/NED :", MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [190] MatchMarket::tokenA() [staticcall]
+    │   └─ ← [Return] OutcomeToken: [0x80ADF1a82bc2730A069559d030BC389CEA624EE4]
+    ├─ [0] console::log("TokenA (M1):", OutcomeToken: [0x80ADF1a82bc2730A069559d030BC389CEA624EE4]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [410] MatchMarket::tokenB() [staticcall]
+    │   └─ ← [Return] OutcomeToken: [0x6AD575E50f0a0007a3Ee1c4efed32510Ab6A0316]
+    ├─ [0] console::log("TokenB (M1):", OutcomeToken: [0x6AD575E50f0a0007a3Ee1c4efed32510Ab6A0316]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("\n--- Approvals: YUBII (all 3 markets) + M1 outcome tokens (for sell) ---") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [190] MatchMarket::tokenA() [staticcall]
+    │   └─ ← [Return] OutcomeToken: [0x80ADF1a82bc2730A069559d030BC389CEA624EE4]
+    ├─ [410] MatchMarket::tokenB() [staticcall]
+    │   └─ ← [Return] OutcomeToken: [0x6AD575E50f0a0007a3Ee1c4efed32510Ab6A0316]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, spender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, spender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8, spender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8, spender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC, spender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC, spender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x90F79bf6EB2c4f870365E785982E1f101E93b906, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x90F79bf6EB2c4f870365E785982E1f101E93b906, spender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x90F79bf6EB2c4f870365E785982E1f101E93b906, spender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x90F79bf6EB2c4f870365E785982E1f101E93b906, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x90F79bf6EB2c4f870365E785982E1f101E93b906, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65, spender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65, spender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc, spender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc, spender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x976EA74026E726554dB657fA54763abd0C3a0aa9, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x976EA74026E726554dB657fA54763abd0C3a0aa9, spender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x976EA74026E726554dB657fA54763abd0C3a0aa9, spender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x976EA74026E726554dB657fA54763abd0C3a0aa9, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x976EA74026E726554dB657fA54763abd0C3a0aa9, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955, spender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955, spender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f, spender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f, spender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720, spender: MatchMarket: [0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720, spender: MatchMarket: [0x3663fd6F86388232a1Fb346b37649f7a7e5f2599], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [24325] OutcomeToken::approve(MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720, spender: MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] console::log("  Done. 5 approvals x 10 wallets = 50 approval txs") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("\n") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("============================================") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("SCENARIO 1 -- FRA vs GER (normal lifecycle)") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("============================================") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("Market:", MatchMarket: [0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [3402] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 30
+    ├─ [0] console::log("\n[FEE] initial              :", 30, "bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("\n--- Phase 1: Wallets 1-5 buy FRA (teamA) ---") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [0] MatchMarket::buy{value: 3000000000000000}(true, 0)
+    │   └─ ← [OutOfFunds] EvmError: OutOfFunds
+    └─ ← [Revert] EvmError: Revert
+
+
+
+== Logs ==
+  +==========================================+
+     YUBII CUP -- MULTI-USER SEPOLIA TEST    
+  +==========================================+
+  Deployer  : 0x05D811E04db174333402539AF50531312AbFd158
+  Balance   : 400296713760139593
+  
+--- 10 Test Wallets (BIP-44 from Foundry test mnemonic) ---
+    Wallet 1 : 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+    Wallet 2 : 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+    Wallet 3 : 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+    Wallet 4 : 0x90F79bf6EB2c4f870365E785982E1f101E93b906
+    Wallet 5 : 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65
+    Wallet 6 : 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
+    Wallet 7 : 0x976EA74026E726554dB657fA54763abd0C3a0aa9
+    Wallet 8 : 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955
+    Wallet 9 : 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f
+    Wallet 10 : 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720
+  
+--- Funding 10 wallets: 0.008 ETH + 5 YUBII each ---
+    Done. Total distributed: 0.08 ETH + 50 YUBII
+  
+--- Markets deployed ---
+  M1 FRA/GER : 0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db
+  M2 POR/ESP : 0xFB1c5F772Ae723Db6e0a4e2ddE2a6fEA84229757
+  M3 ITA/NED : 0x3663fd6F86388232a1Fb346b37649f7a7e5f2599
+  TokenA (M1): 0x80ADF1a82bc2730A069559d030BC389CEA624EE4
+  TokenB (M1): 0x6AD575E50f0a0007a3Ee1c4efed32510Ab6A0316
+  
+--- Approvals: YUBII (all 3 markets) + M1 outcome tokens (for sell) ---
+    Done. 5 approvals x 10 wallets = 50 approval txs
+  
+
+  ============================================
+  SCENARIO 1 -- FRA vs GER (normal lifecycle)
+  ============================================
+  Market: 0x2692e5A2B1000f9B3baD89C58Ae72eA83d76f4Db
+  
+[FEE] initial              : 30 bps
+  
+--- Phase 1: Wallets 1-5 buy FRA (teamA) ---
+Error: script failed: <empty revert data>

@@ -255,7 +255,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
 
     function reclaimETH(address to, uint256 amount) external {
         if (msg.sender != owner) revert OnlyOwner();
-        require(held || pinkyBroken || settled, "Not held, pinkyBroken, or settled");
+        require(held || pinkyBroken, "Not in emergency state");
         (bool ok,) = payable(to).call{value: amount}("");
         require(ok, "ETH transfer failed");
     }
@@ -616,6 +616,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
                 }),
                 ""
             );
+            liquidityA = 0;
             _takeRemoved(deltaA, tokenA);
         }
 
@@ -631,6 +632,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
                 }),
                 ""
             );
+            liquidityB = 0;
             _takeRemoved(deltaB, tokenB);
         }
     }

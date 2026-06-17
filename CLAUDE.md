@@ -70,5 +70,15 @@ https://github.com/yubiigg/yubii-cup
 cd /Users/erkanakdeniz/shobu-cup
 export NODE_TLS_REJECT_UNAUTHORIZED=0 && claude --dangerously-skip-permissions
 
+## gstack
+
+Web browsing: always use the `/browse` skill from gstack. Never use `mcp__claude-in-chrome__*` tools directly.
+
+Available gstack skills:
+- `/browse` — browser automation for web research and scraping
+- `/cso` — chief strategy officer review
+- `/review` — structured code review
+- `/guard` — safety and security check
+
 ## Aktif Görev
 [Her session başında buraya yaz]

@@ -1,0 +1,883 @@
+No files changed, compilation skipped
+Traces:
+  [7127237] MultiUserTest::scenario4FranceSenegal()
+    ├─ [0] VM::envOr("YUBII_TOKEN", 0xAd8f38A0940351f0602CBbD4Ab39B4F06C038AaF) [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envOr("YUBII_FACTORY", 0x38Df9f316abb91163Fbfd6eaB048DC357BA384A8) [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envOr("MARKET_USA_MEX", 0xd7E7fc8F64de9938cc1af4BFe2Ed75117b1a0925) [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envOr("MARKET_ENG_FRA", 0x74c7Bd018296BC6bc719D1c73d31f4A6b3a5353A) [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("WALLET1_PK") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("WALLET2_PK") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("WALLET3_PK") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("WALLET4_PK") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("WALLET5_PK") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("WALLET6_PK") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("WALLET7_PK") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("WALLET8_PK") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("WALLET9_PK") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("WALLET10_PK") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x0f32bdB01F9872BeA310e7a782054cA9C180d798
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x9b1F0213370e1dd450AFF540E63C097983cc4F53
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xc4195570F268EB076240b0EDDac92BFEABC47AAF
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xAd1f17f7190A48a654deE70f26A91fb243792003
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x47c8F3c32A0f876595dE04A3e3603da7aB6F24fe
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x0d9Edda449FC3F2A8Aae548CeE2F27a83FD77C52
+    ├─ [0] VM::envUint("PRIVATE_KEY") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x05D811E04db174333402539AF50531312AbFd158
+    ├─ [0] console::log("\n+==========================================+") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("  SCENARIO 4: France vs Senegal (mock OO)  ") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("+==========================================+") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("Deployer :", 0x05D811E04db174333402539AF50531312AbFd158) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("Balance  :", 399755104371182967 [3.997e17]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("Kickoff  : 1781629200 (2026-06-16 19:00 UTC)") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [305350] → new MockOptimisticOracleV3@0x7A7B1f2d938F45Fd49f561B93635Cb6F9Ca79d1E
+    │   └─ ← [Return] 1525 bytes of code
+    ├─ [0] console::log("\n[deploy] MockOptimisticOracleV3:", MockOptimisticOracleV3: [0x7A7B1f2d938F45Fd49f561B93635Cb6F9Ca79d1E]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [4559350] → new MatchMarket@0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d
+    │   ├─ [458037] → new OutcomeToken@0xBE36AC9f72d4C187a351A3CCF964e613e6010C74
+    │   │   └─ ← [Return] 2056 bytes of code
+    │   ├─ [458037] → new OutcomeToken@0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB
+    │   │   └─ ← [Return] 2056 bytes of code
+    │   ├─ [29172] PoolManager::initialize(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), 79228162514264337593543950336 [7.922e28])
+    │   │   ├─ emit Initialize(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, currency0: 0x0000000000000000000000000000000000000000, currency1: OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000, sqrtPriceX96: 79228162514264337593543950336 [7.922e28], tick: 0)
+    │   │   └─ ← [Return] 0
+    │   ├─ [29172] PoolManager::initialize(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), 79228162514264337593543950336 [7.922e28])
+    │   │   ├─ emit Initialize(id: 0x43e06e57850cc7d76343a3d07a49d8065c53a3ee0f2d12d1057a153eea03a72d, currency0: 0x0000000000000000000000000000000000000000, currency1: OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB], fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000, sqrtPriceX96: 79228162514264337593543950336 [7.922e28], tick: 0)
+    │   │   └─ ← [Return] 0
+    │   └─ ← [Return] 16357 bytes of code
+    ├─ [557991] MatchMarket::initializeLiquidity()
+    │   ├─ [46510] OutcomeToken::mint(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 10000000000000000 [1e16])
+    │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 10000000000000000 [1e16])
+    │   │   └─ ← [Stop]
+    │   ├─ [46510] OutcomeToken::mint(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 10000000000000000 [1e16])
+    │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 10000000000000000 [1e16])
+    │   │   └─ ← [Stop]
+    │   ├─ [441301] PoolManager::unlock(0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000)
+    │   │   ├─ [439318] MatchMarket::unlockCallback(0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000)
+    │   │   │   ├─ [164250] PoolManager::modifyLiquidity(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), ModifyLiquidityParams({ tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000 }), 0x)
+    │   │   │   │   ├─ emit ModifyLiquidity(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000)
+    │   │   │   │   └─ ← [Return] -3402823669209384294351379153379218651195392568231788544 [-3.402e54], 0
+    │   │   │   ├─ [1273] PoolManager::settle{value: 10000000000000000}()
+    │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   ├─ [3910] PoolManager::sync(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74])
+    │   │   │   │   ├─ [2537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   ├─ [22874] OutcomeToken::transfer(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], 10000000000000000 [1e16])
+    │   │   │   │   ├─ emit Transfer(from: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], to: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], value: 10000000000000000 [1e16])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [2511] PoolManager::settle()
+    │   │   │   │   ├─ [537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   ├─ [164250] PoolManager::modifyLiquidity(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), ModifyLiquidityParams({ tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000 }), 0x)
+    │   │   │   │   ├─ emit ModifyLiquidity(id: 0x43e06e57850cc7d76343a3d07a49d8065c53a3ee0f2d12d1057a153eea03a72d, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000)
+    │   │   │   │   └─ ← [Return] -3402823669209384294351379153379218651195392568231788544 [-3.402e54], 0
+    │   │   │   ├─ [1273] PoolManager::settle{value: 10000000000000000}()
+    │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   ├─ [3910] PoolManager::sync(OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB])
+    │   │   │   │   ├─ [2537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   ├─ [22874] OutcomeToken::transfer(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], 10000000000000000 [1e16])
+    │   │   │   │   ├─ emit Transfer(from: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], to: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], value: 10000000000000000 [1e16])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [2511] PoolManager::settle()
+    │   │   │   │   ├─ [537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   └─ ← [Return] 0x
+    │   │   └─ ← [Return] 0x
+    │   └─ ← [Return]
+    ├─ [672] MatchMarket::removeLimits()
+    │   └─ ← [Stop]
+    ├─ [1106] MatchMarket::reduceTax(30, 30)
+    │   └─ ← [Stop]
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] console::log("[deploy] MatchMarket (FRA vs SEN)  :", MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [190] MatchMarket::tokenA() [staticcall]
+    │   └─ ← [Return] OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74]
+    ├─ [0] console::log("[deploy] yFRA (tokenA)             :", OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [410] MatchMarket::tokenB() [staticcall]
+    │   └─ ← [Return] OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB]
+    ├─ [0] console::log("[deploy] ySEN (tokenB)             :", OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [3372] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 30
+    ├─ [0] VM::toString(30) [staticcall]
+    │   └─ ← [Return] "30"
+    ├─ [0] console::log("[deploy] initial fee: 30 bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("\n--- YUBII approvals (wallets 1-8) ---") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x0f32bdB01F9872BeA310e7a782054cA9C180d798, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x9b1F0213370e1dd450AFF540E63C097983cc4F53, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xc4195570F268EB076240b0EDDac92BFEABC47AAF, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0xAd1f17f7190A48a654deE70f26A91fb243792003, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] console::log("  8 approvals done") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("\n--- Wallets 1-5 buy France (yFRA) ---") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [129835] MatchMarket::buy{value: 5000000000000000}(true, 0)
+    │   ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 15000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [12792] YubiiToken::transferFrom(0x0f32bdB01F9872BeA310e7a782054cA9C180d798, 0x05D811E04db174333402539AF50531312AbFd158, 15000000000000 [1.5e13])
+    │   │   ├─ emit Transfer(from: 0x0f32bdB01F9872BeA310e7a782054cA9C180d798, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 15000000000000 [1.5e13])
+    │   │   └─ ← [Return] true
+    │   ├─ [82506] PoolManager::unlock(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000f32bdb01f9872bea310e7a782054ca9c180d79800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011b5d4c2349000)
+    │   │   ├─ [80514] MatchMarket::unlockCallback(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000f32bdb01f9872bea310e7a782054ca9c180d79800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011b5d4c2349000)
+    │   │   │   ├─ [41274] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -4985000000000000 [-4.985e15], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   │   ├─ emit Swap(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -4985000000000000 [-4.985e15], amount1: 3319993360073399 [3.319e15], sqrtPriceX96: 52924465166446952960758601819 [5.292e28], liquidity: 10000000000000000 [1e16], tick: -8070, fee: 3000)
+    │   │   │   │   └─ ← [Return] -1696307599100878240364922418047364534104840006639926601 [-1.696e54]
+    │   │   │   ├─ [1273] PoolManager::settle{value: 4985000000000000}()
+    │   │   │   │   └─ ← [Return] 4985000000000000 [4.985e15]
+    │   │   │   ├─ [26447] PoolManager::take(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], 0x0f32bdB01F9872BeA310e7a782054cA9C180d798, 3319993360073399 [3.319e15])
+    │   │   │   │   ├─ [24874] OutcomeToken::transfer(0x0f32bdB01F9872BeA310e7a782054cA9C180d798, 3319993360073399 [3.319e15])
+    │   │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0x0f32bdB01F9872BeA310e7a782054cA9C180d798, value: 3319993360073399 [3.319e15])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 0x000000000000000000000000000000000000000000000000000bcb8430e242b7
+    │   │   └─ ← [Return] 0x000000000000000000000000000000000000000000000000000bcb8430e242b7
+    │   ├─ emit Buy(user: 0x0f32bdB01F9872BeA310e7a782054cA9C180d798, isTeamA: true, ethIn: 5000000000000000 [5e15], tokensOut: 3319993360073399 [3.319e15], yubiiFee: 15000000000000 [1.5e13])
+    │   └─ ← [Return]
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::toString(1) [staticcall]
+    │   └─ ← [Return] "1"
+    ├─ [0] VM::toString(5) [staticcall]
+    │   └─ ← [Return] "5"
+    ├─ [1392] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 30
+    ├─ [0] VM::toString(30) [staticcall]
+    │   └─ ← [Return] "30"
+    ├─ [0] console::log("  W1 | yFRA | 5 finney | fee: 30 bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [84360] MatchMarket::buy{value: 10000000000000000}(true, 0)
+    │   ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 30000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [7992] YubiiToken::transferFrom(0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, 0x05D811E04db174333402539AF50531312AbFd158, 30000000000000 [3e13])
+    │   │   ├─ emit Transfer(from: 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 30000000000000 [3e13])
+    │   │   └─ ← [Return] true
+    │   ├─ [61691] PoolManager::unlock(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000ddba213d346c994c3f7ae997d0101f4f21c3e6c5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   │   ├─ [59699] MatchMarket::unlockCallback(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000ddba213d346c994c3f7ae997d0101f4f21c3e6c5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   │   │   ├─ [20459] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -9970000000000000 [-9.97e15], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   │   ├─ emit Swap(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -9970000000000000 [-9.97e15], amount1: 2665576368874274 [2.665e15], sqrtPriceX96: 31805593391711582945228387618 [3.18e28], liquidity: 10000000000000000 [1e16], tick: -18255 [-1.825e4], fee: 3000)
+    │   │   │   │   └─ ← [Return] -3392615198201756480729844836094729068213654423631125726 [-3.392e54]
+    │   │   │   ├─ [1273] PoolManager::settle{value: 9970000000000000}()
+    │   │   │   │   └─ ← [Return] 9970000000000000 [9.97e15]
+    │   │   │   ├─ [26447] PoolManager::take(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, 2665576368874274 [2.665e15])
+    │   │   │   │   ├─ [24874] OutcomeToken::transfer(0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, 2665576368874274 [2.665e15])
+    │   │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, value: 2665576368874274 [2.665e15])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 0x00000000000000000000000000000000000000000000000000097853dc96a322
+    │   │   └─ ← [Return] 0x00000000000000000000000000000000000000000000000000097853dc96a322
+    │   ├─ emit Buy(user: 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, isTeamA: true, ethIn: 10000000000000000 [1e16], tokensOut: 2665576368874274 [2.665e15], yubiiFee: 30000000000000 [3e13])
+    │   └─ ← [Return]
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::toString(2) [staticcall]
+    │   └─ ← [Return] "2"
+    ├─ [0] VM::toString(10) [staticcall]
+    │   └─ ← [Return] "10"
+    ├─ [1392] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 31
+    ├─ [0] VM::toString(31) [staticcall]
+    │   └─ ← [Return] "31"
+    ├─ [0] console::log("  W2 | yFRA | 10 finney | fee: 31 bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [79014] MatchMarket::buy{value: 15000000000000000}(true, 0)
+    │   ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 45000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [7992] YubiiToken::transferFrom(0x9b1F0213370e1dd450AFF540E63C097983cc4F53, 0x05D811E04db174333402539AF50531312AbFd158, 46500000000000 [4.65e13])
+    │   │   ├─ emit Transfer(from: 0x9b1F0213370e1dd450AFF540E63C097983cc4F53, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 46500000000000 [4.65e13])
+    │   │   └─ ← [Return] true
+    │   ├─ [56345] PoolManager::unlock(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000010000000000000000000000009b1f0213370e1dd450aff540e63c097983cc4f5300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000035217e469db000)
+    │   │   ├─ [54353] MatchMarket::unlockCallback(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000010000000000000000000000009b1f0213370e1dd450aff540e63c097983cc4f5300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000035217e469db000)
+    │   │   │   ├─ [15113] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -14955000000000000 [-1.495e16], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   │   ├─ emit Swap(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -14955000000000000 [-1.495e16], amount1: 1503146445000919 [1.503e15], sqrtPriceX96: 19896440308984429252729877982 [1.989e28], liquidity: 10000000000000000 [1e16], tick: -27638 [-2.763e4], fee: 3000)
+    │   │   │   │   └─ ← [Return] -5088922797302634721094767254142093602322976853554999081 [-5.088e54]
+    │   │   │   ├─ [1273] PoolManager::settle{value: 14955000000000000}()
+    │   │   │   │   └─ ← [Return] 14955000000000000 [1.495e16]
+    │   │   │   ├─ [26447] PoolManager::take(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], 0x9b1F0213370e1dd450AFF540E63C097983cc4F53, 1503146445000919 [1.503e15])
+    │   │   │   │   ├─ [24874] OutcomeToken::transfer(0x9b1F0213370e1dd450AFF540E63C097983cc4F53, 1503146445000919 [1.503e15])
+    │   │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0x9b1F0213370e1dd450AFF540E63C097983cc4F53, value: 1503146445000919 [1.503e15])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000005571a8de650d7
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000005571a8de650d7
+    │   ├─ emit Buy(user: 0x9b1F0213370e1dd450AFF540E63C097983cc4F53, isTeamA: true, ethIn: 15000000000000000 [1.5e16], tokensOut: 1503146445000919 [1.503e15], yubiiFee: 46500000000000 [4.65e13])
+    │   └─ ← [Return]
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::toString(3) [staticcall]
+    │   └─ ← [Return] "3"
+    ├─ [0] VM::toString(15) [staticcall]
+    │   └─ ← [Return] "15"
+    ├─ [1392] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 32
+    ├─ [0] VM::toString(32) [staticcall]
+    │   └─ ← [Return] "32"
+    ├─ [0] console::log("  W3 | yFRA | 15 finney | fee: 32 bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [84328] MatchMarket::buy{value: 20000000000000000}(true, 0)
+    │   ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 60000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [7992] YubiiToken::transferFrom(0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, 0x05D811E04db174333402539AF50531312AbFd158, 64000000000000 [6.4e13])
+    │   │   ├─ emit Transfer(from: 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 64000000000000 [6.4e13])
+    │   │   └─ ← [Return] true
+    │   ├─ [61659] PoolManager::unlock(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000939dc1d66ede54d3f8826e28ff83be8fc1d2ccdc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000046d75308d24000)
+    │   │   ├─ [59667] MatchMarket::unlockCallback(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000939dc1d66ede54d3f8826e28ff83be8fc1d2ccdc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000046d75308d24000)
+    │   │   │   ├─ [20427] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -19940000000000000 [-1.994e16], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   │   ├─ emit Swap(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -19940000000000000 [-1.994e16], amount1: 836254575853123 [8.362e14], sqrtPriceX96: 13270948965085579906111020086 [1.327e28], liquidity: 10000000000000000 [1e16], tick: -35737 [-3.573e4], fee: 3000)
+    │   │   │   │   └─ ← [Return] -6785230396403512961459689672189458136431803745424146877 [-6.785e54]
+    │   │   │   ├─ [1273] PoolManager::settle{value: 19940000000000000}()
+    │   │   │   │   └─ ← [Return] 19940000000000000 [1.994e16]
+    │   │   │   ├─ [26447] PoolManager::take(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, 836254575853123 [8.362e14])
+    │   │   │   │   ├─ [24874] OutcomeToken::transfer(0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, 836254575853123 [8.362e14])
+    │   │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, value: 836254575853123 [8.362e14])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000002f891b0ef7e43
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000002f891b0ef7e43
+    │   ├─ emit Buy(user: 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, isTeamA: true, ethIn: 20000000000000000 [2e16], tokensOut: 836254575853123 [8.362e14], yubiiFee: 64000000000000 [6.4e13])
+    │   └─ ← [Return]
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::toString(4) [staticcall]
+    │   └─ ← [Return] "4"
+    ├─ [0] VM::toString(20) [staticcall]
+    │   └─ ← [Return] "20"
+    ├─ [1392] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 33
+    ├─ [0] VM::toString(33) [staticcall]
+    │   └─ ← [Return] "33"
+    ├─ [0] console::log("  W4 | yFRA | 20 finney | fee: 33 bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [78946] MatchMarket::buy{value: 10000000000000000}(true, 0)
+    │   ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 30000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [7992] YubiiToken::transferFrom(0xc4195570F268EB076240b0EDDac92BFEABC47AAF, 0x05D811E04db174333402539AF50531312AbFd158, 33000000000000 [3.3e13])
+    │   │   ├─ emit Transfer(from: 0xc4195570F268EB076240b0EDDac92BFEABC47AAF, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 33000000000000 [3.3e13])
+    │   │   └─ ← [Return] true
+    │   ├─ [56277] PoolManager::unlock(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000c4195570f268eb076240b0eddac92bfeabc47aaf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   │   ├─ [54285] MatchMarket::unlockCallback(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000c4195570f268eb076240b0eddac92bfeabc47aaf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   │   │   ├─ [15045] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -9970000000000000 [-9.97e15], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   │   ├─ emit Swap(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -9970000000000000 [-9.97e15], amount1: 239084037826292 [2.39e14], sqrtPriceX96: 11376730064738777215107581539 [1.137e28], liquidity: 10000000000000000 [1e16], tick: -38818 [-3.881e4], fee: 3000)
+    │   │   │   │   └─ ← [Return] -3392615198201756480729844836094729068216080915962173708 [-3.392e54]
+    │   │   │   ├─ [1273] PoolManager::settle{value: 9970000000000000}()
+    │   │   │   │   └─ ← [Return] 9970000000000000 [9.97e15]
+    │   │   │   ├─ [26447] PoolManager::take(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], 0xc4195570F268EB076240b0EDDac92BFEABC47AAF, 239084037826292 [2.39e14])
+    │   │   │   │   ├─ [24874] OutcomeToken::transfer(0xc4195570F268EB076240b0EDDac92BFEABC47AAF, 239084037826292 [2.39e14])
+    │   │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0xc4195570F268EB076240b0EDDac92BFEABC47AAF, value: 239084037826292 [2.39e14])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000d972172566f4
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000d972172566f4
+    │   ├─ emit Buy(user: 0xc4195570F268EB076240b0EDDac92BFEABC47AAF, isTeamA: true, ethIn: 10000000000000000 [1e16], tokensOut: 239084037826292 [2.39e14], yubiiFee: 33000000000000 [3.3e13])
+    │   └─ ← [Return]
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::toString(5) [staticcall]
+    │   └─ ← [Return] "5"
+    ├─ [0] VM::toString(10) [staticcall]
+    │   └─ ← [Return] "10"
+    ├─ [1392] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 34
+    ├─ [0] VM::toString(34) [staticcall]
+    │   └─ ← [Return] "34"
+    ├─ [0] console::log("  W5 | yFRA | 10 finney | fee: 34 bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("\n--- Wallets 6-8 buy Senegal (ySEN) ---") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [106081] MatchMarket::buy{value: 8000000000000000}(false, 0)
+    │   ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 24000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [7992] YubiiToken::transferFrom(0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, 0x05D811E04db174333402539AF50531312AbFd158, 27200000000000 [2.72e13])
+    │   │   ├─ emit Transfer(from: 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 27200000000000 [2.72e13])
+    │   │   └─ ← [Return] true
+    │   ├─ [83412] PoolManager::unlock(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f1876a567d562720bab7fbe6615cb19af5b45d900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c562136ba8000)
+    │   │   ├─ [81420] MatchMarket::unlockCallback(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f1876a567d562720bab7fbe6615cb19af5b45d900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c562136ba8000)
+    │   │   │   ├─ [42167] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -7976000000000000 [-7.976e15], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   │   ├─ emit Swap(id: 0x43e06e57850cc7d76343a3d07a49d8065c53a3ee0f2d12d1057a153eea03a72d, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -7976000000000000 [-7.976e15], amount1: 4429612358952214 [4.429e15], sqrtPriceX96: 44133157729238350644730006841 [4.413e28], liquidity: 10000000000000000 [1e16], tick: -11703 [-1.17e4], fee: 3000)
+    │   │   │   │   └─ ← [Return] -2714092158561405184583875868875783254568626387641047786 [-2.714e54]
+    │   │   │   ├─ [1273] PoolManager::settle{value: 7976000000000000}()
+    │   │   │   │   └─ ← [Return] 7976000000000000 [7.976e15]
+    │   │   │   ├─ [26447] PoolManager::take(OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB], 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, 4429612358952214 [4.429e15])
+    │   │   │   │   ├─ [24874] OutcomeToken::transfer(0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, 4429612358952214 [4.429e15])
+    │   │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, value: 4429612358952214 [4.429e15])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 0x000000000000000000000000000000000000000000000000000fbcb57f25e516
+    │   │   └─ ← [Return] 0x000000000000000000000000000000000000000000000000000fbcb57f25e516
+    │   ├─ emit Buy(user: 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, isTeamA: false, ethIn: 8000000000000000 [8e15], tokensOut: 4429612358952214 [4.429e15], yubiiFee: 27200000000000 [2.72e13])
+    │   └─ ← [Return]
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::toString(6) [staticcall]
+    │   └─ ← [Return] "6"
+    ├─ [0] VM::toString(8) [staticcall]
+    │   └─ ← [Return] "8"
+    ├─ [1392] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 34
+    ├─ [0] VM::toString(34) [staticcall]
+    │   └─ ← [Return] "34"
+    ├─ [0] console::log("  W6 | ySEN | 8 finney | fee: 34 bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [84313] MatchMarket::buy{value: 12000000000000000}(false, 0)
+    │   ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 36000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [7992] YubiiToken::transferFrom(0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, 0x05D811E04db174333402539AF50531312AbFd158, 40800000000000 [4.08e13])
+    │   │   ├─ emit Transfer(from: 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 40800000000000 [4.08e13])
+    │   │   └─ ← [Return] true
+    │   ├─ [61644] PoolManager::unlock(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007a49d678b4cbdaf7fca6d3429d07357ae7fb4b690000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002a8131d217c000)
+    │   │   ├─ [59652] MatchMarket::unlockCallback(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007a49d678b4cbdaf7fca6d3429d07357ae7fb4b690000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002a8131d217c000)
+    │   │   │   ├─ [20399] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -11964000000000000 [-1.196e16], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   │   ├─ emit Swap(id: 0x43e06e57850cc7d76343a3d07a49d8065c53a3ee0f2d12d1057a153eea03a72d, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -11964000000000000 [-1.196e16], amount1: 2223687587701386 [2.223e15], sqrtPriceX96: 26515289571302562641606647867 [2.651e28], liquidity: 10000000000000000 [1e16], tick: -21894 [-2.189e4], fee: 3000)
+    │   │   │   │   └─ ← [Return] -4071138237842107776875813803313674881857360312412298614 [-4.071e54]
+    │   │   │   ├─ [1273] PoolManager::settle{value: 11964000000000000}()
+    │   │   │   │   └─ ← [Return] 11964000000000000 [1.196e16]
+    │   │   │   ├─ [26447] PoolManager::take(OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB], 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, 2223687587701386 [2.223e15])
+    │   │   │   │   ├─ [24874] OutcomeToken::transfer(0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, 2223687587701386 [2.223e15])
+    │   │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, value: 2223687587701386 [2.223e15])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000007e66e9cc1a28a
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000007e66e9cc1a28a
+    │   ├─ emit Buy(user: 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, isTeamA: false, ethIn: 12000000000000000 [1.2e16], tokensOut: 2223687587701386 [2.223e15], yubiiFee: 40800000000000 [4.08e13])
+    │   └─ ← [Return]
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::toString(7) [staticcall]
+    │   └─ ← [Return] "7"
+    ├─ [0] VM::toString(12) [staticcall]
+    │   └─ ← [Return] "12"
+    ├─ [1392] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 35
+    ├─ [0] VM::toString(35) [staticcall]
+    │   └─ ← [Return] "35"
+    ├─ [0] console::log("  W7 | ySEN | 12 finney | fee: 35 bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return]
+    ├─ [79027] MatchMarket::buy{value: 10000000000000000}(false, 0)
+    │   ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 30000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [7992] YubiiToken::transferFrom(0xAd1f17f7190A48a654deE70f26A91fb243792003, 0x05D811E04db174333402539AF50531312AbFd158, 35000000000000 [3.5e13])
+    │   │   ├─ emit Transfer(from: 0xAd1f17f7190A48a654deE70f26A91fb243792003, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 35000000000000 [3.5e13])
+    │   │   └─ ← [Return] true
+    │   ├─ [56358] PoolManager::unlock(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ad1f17f7190a48a654dee70f26a91fb243792003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   │   ├─ [54366] MatchMarket::unlockCallback(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ad1f17f7190a48a654dee70f26a91fb243792003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   │   │   ├─ [15113] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -9970000000000000 [-9.97e15], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   │   ├─ emit Swap(id: 0x43e06e57850cc7d76343a3d07a49d8065c53a3ee0f2d12d1057a153eea03a72d, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -9970000000000000 [-9.97e15], amount1: 835416227294993 [8.354e14], sqrtPriceX96: 19896440308984429252729877982 [1.989e28], liquidity: 10000000000000000 [1e16], tick: -27638 [-2.763e4], fee: 3000)
+    │   │   │   │   └─ ← [Return] -3392615198201756480729844836094729068215484583772705007 [-3.392e54]
+    │   │   │   ├─ [1273] PoolManager::settle{value: 9970000000000000}()
+    │   │   │   │   └─ ← [Return] 9970000000000000 [9.97e15]
+    │   │   │   ├─ [26447] PoolManager::take(OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB], 0xAd1f17f7190A48a654deE70f26A91fb243792003, 835416227294993 [8.354e14])
+    │   │   │   │   ├─ [24874] OutcomeToken::transfer(0xAd1f17f7190A48a654deE70f26A91fb243792003, 835416227294993 [8.354e14])
+    │   │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0xAd1f17f7190A48a654deE70f26A91fb243792003, value: 835416227294993 [8.354e14])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000002f7ce7f77af11
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000002f7ce7f77af11
+    │   ├─ emit Buy(user: 0xAd1f17f7190A48a654deE70f26A91fb243792003, isTeamA: false, ethIn: 10000000000000000 [1e16], tokensOut: 835416227294993 [8.354e14], yubiiFee: 35000000000000 [3.5e13])
+    │   └─ ← [Return]
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return]
+    ├─ [0] VM::toString(8) [staticcall]
+    │   └─ ← [Return] "8"
+    ├─ [0] VM::toString(10) [staticcall]
+    │   └─ ← [Return] "10"
+    ├─ [1392] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 36
+    ├─ [0] VM::toString(36) [staticcall]
+    │   └─ ← [Return] "36"
+    ├─ [0] console::log("  W8 | ySEN | 10 finney | fee: 36 bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("\n+==========================================+") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("|      FRANCE vs SENEGAL -- LIVE MARKET    |") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("+==========================================+") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("Market     :", MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("MockOracle :", MockOptimisticOracleV3: [0x7A7B1f2d938F45Fd49f561B93635Cb6F9Ca79d1E]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [190] MatchMarket::tokenA() [staticcall]
+    │   └─ ← [Return] OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74]
+    ├─ [0] console::log("yFRA token :", OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [410] MatchMarket::tokenB() [staticcall]
+    │   └─ ← [Return] OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB]
+    ├─ [0] console::log("ySEN token :", OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("Kickoff    : 1781629200 (2026-06-16 19:00 UTC)") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [1392] MatchMarket::currentFeeBps() [staticcall]
+    │   └─ ← [Return] 36
+    ├─ [0] VM::toString(36) [staticcall]
+    │   └─ ← [Return] "36"
+    ├─ [0] console::log("Final fee  : 36 bps") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [514] MatchMarket::ewmaVolume() [staticcall]
+    │   └─ ← [Return] 90000000000000000 [9e16]
+    ├─ [0] VM::toString(90000000000000000 [9e16]) [staticcall]
+    │   └─ ← [Return] "90000000000000000"
+    ├─ [0] console::log("EWMA vol   : 90000000000000000 wei") [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("France vs Senegal market is live and open. Settle tonight with requestSettlement() + mockResolve() once the real result is known.") [staticcall]
+    │   └─ ← [Stop]
+    └─ ← [Return]
+
+
+Script ran successfully.
+
+== Logs ==
+  
++==========================================+
+    SCENARIO 4: France vs Senegal (mock OO)  
+  +==========================================+
+  Deployer : 0x05D811E04db174333402539AF50531312AbFd158
+  Balance  : 399755104371182967
+  Kickoff  : 1781629200 (2026-06-16 19:00 UTC)
+  
+[deploy] MockOptimisticOracleV3: 0x7A7B1f2d938F45Fd49f561B93635Cb6F9Ca79d1E
+  [deploy] MatchMarket (FRA vs SEN)  : 0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d
+  [deploy] yFRA (tokenA)             : 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74
+  [deploy] ySEN (tokenB)             : 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB
+  [deploy] initial fee: 30 bps
+  
+--- YUBII approvals (wallets 1-8) ---
+    8 approvals done
+  
+--- Wallets 1-5 buy France (yFRA) ---
+    W1 | yFRA | 5 finney | fee: 30 bps
+    W2 | yFRA | 10 finney | fee: 31 bps
+    W3 | yFRA | 15 finney | fee: 32 bps
+    W4 | yFRA | 20 finney | fee: 33 bps
+    W5 | yFRA | 10 finney | fee: 34 bps
+  
+--- Wallets 6-8 buy Senegal (ySEN) ---
+    W6 | ySEN | 8 finney | fee: 34 bps
+    W7 | ySEN | 12 finney | fee: 35 bps
+    W8 | ySEN | 10 finney | fee: 36 bps
+  
++==========================================+
+  |      FRANCE vs SENEGAL -- LIVE MARKET    |
+  +==========================================+
+  Market     : 0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d
+  MockOracle : 0x7A7B1f2d938F45Fd49f561B93635Cb6F9Ca79d1E
+  yFRA token : 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74
+  ySEN token : 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB
+  Kickoff    : 1781629200 (2026-06-16 19:00 UTC)
+  Final fee  : 36 bps
+  EWMA vol   : 90000000000000000 wei
+  France vs Senegal market is live and open. Settle tonight with requestSettlement() + mockResolve() once the real result is known.
+
+## Setting up 1 EVM.
+==========================
+Simulated On-chain Traces:
+
+  [305350] → new MockOptimisticOracleV3@0x7A7B1f2d938F45Fd49f561B93635Cb6F9Ca79d1E
+    └─ ← [Return] 1525 bytes of code
+
+  [4559350] → new MatchMarket@0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d
+    ├─ [458037] → new OutcomeToken@0xBE36AC9f72d4C187a351A3CCF964e613e6010C74
+    │   └─ ← [Return] 2056 bytes of code
+    ├─ [458037] → new OutcomeToken@0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB
+    │   └─ ← [Return] 2056 bytes of code
+    ├─ [29172] PoolManager::initialize(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), 79228162514264337593543950336 [7.922e28])
+    │   ├─ emit Initialize(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, currency0: 0x0000000000000000000000000000000000000000, currency1: OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000, sqrtPriceX96: 79228162514264337593543950336 [7.922e28], tick: 0)
+    │   └─ ← [Return] 0
+    ├─ [29172] PoolManager::initialize(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), 79228162514264337593543950336 [7.922e28])
+    │   ├─ emit Initialize(id: 0x43e06e57850cc7d76343a3d07a49d8065c53a3ee0f2d12d1057a153eea03a72d, currency0: 0x0000000000000000000000000000000000000000, currency1: OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB], fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000, sqrtPriceX96: 79228162514264337593543950336 [7.922e28], tick: 0)
+    │   └─ ← [Return] 0
+    └─ ← [Return] 16357 bytes of code
+
+  [583491] MatchMarket::initializeLiquidity()
+    ├─ [46510] OutcomeToken::mint(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 10000000000000000 [1e16])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 10000000000000000 [1e16])
+    │   └─ ← [Stop]
+    ├─ [46510] OutcomeToken::mint(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 10000000000000000 [1e16])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 10000000000000000 [1e16])
+    │   └─ ← [Stop]
+    ├─ [457301] PoolManager::unlock(0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000)
+    │   ├─ [455318] MatchMarket::unlockCallback(0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc10000)
+    │   │   ├─ [166250] PoolManager::modifyLiquidity(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), ModifyLiquidityParams({ tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000 }), 0x)
+    │   │   │   ├─ emit ModifyLiquidity(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000)
+    │   │   │   └─ ← [Return] -3402823669209384294351379153379218651195392568231788544 [-3.402e54], 0
+    │   │   ├─ [1273] PoolManager::settle{value: 10000000000000000}()
+    │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   ├─ [3910] PoolManager::sync(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74])
+    │   │   │   ├─ [2537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [22874] OutcomeToken::transfer(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], 10000000000000000 [1e16])
+    │   │   │   ├─ emit Transfer(from: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], to: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], value: 10000000000000000 [1e16])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [2511] PoolManager::settle()
+    │   │   │   ├─ [537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   ├─ [166250] PoolManager::modifyLiquidity(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), ModifyLiquidityParams({ tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000 }), 0x)
+    │   │   │   ├─ emit ModifyLiquidity(id: 0x43e06e57850cc7d76343a3d07a49d8065c53a3ee0f2d12d1057a153eea03a72d, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], tickLower: -887220 [-8.872e5], tickUpper: 887220 [8.872e5], liquidityDelta: 10000000000000000 [1e16], salt: 0x0000000000000000000000000000000000000000000000000000000000000000)
+    │   │   │   └─ ← [Return] -3402823669209384294351379153379218651195392568231788544 [-3.402e54], 0
+    │   │   ├─ [1273] PoolManager::settle{value: 10000000000000000}()
+    │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   ├─ [3910] PoolManager::sync(OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB])
+    │   │   │   ├─ [2537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [22874] OutcomeToken::transfer(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], 10000000000000000 [1e16])
+    │   │   │   ├─ emit Transfer(from: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], to: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], value: 10000000000000000 [1e16])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [2511] PoolManager::settle()
+    │   │   │   ├─ [537] OutcomeToken::balanceOf(PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543]) [staticcall]
+    │   │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   │   └─ ← [Return] 10000000000000000 [1e16]
+    │   │   └─ ← [Return] 0x
+    │   └─ ← [Return] 0x
+    └─ ← [Return]
+
+  [5472] MatchMarket::removeLimits()
+    └─ ← [Stop]
+
+  [10906] MatchMarket::reduceTax(30, 30)
+    └─ ← [Stop]
+
+  [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    ├─ emit Approval(owner: 0x0f32bdB01F9872BeA310e7a782054cA9C180d798, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    └─ ← [Return] true
+
+  [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    ├─ emit Approval(owner: 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    └─ ← [Return] true
+
+  [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    ├─ emit Approval(owner: 0x9b1F0213370e1dd450AFF540E63C097983cc4F53, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    └─ ← [Return] true
+
+  [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    ├─ emit Approval(owner: 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    └─ ← [Return] true
+
+  [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    ├─ emit Approval(owner: 0xc4195570F268EB076240b0EDDac92BFEABC47AAF, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    └─ ← [Return] true
+
+  [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    ├─ emit Approval(owner: 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    └─ ← [Return] true
+
+  [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    ├─ emit Approval(owner: 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    └─ ← [Return] true
+
+  [24325] YubiiToken::approve(MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    ├─ emit Approval(owner: 0xAd1f17f7190A48a654deE70f26A91fb243792003, spender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    └─ ← [Return] true
+
+  [174326] MatchMarket::buy{value: 5000000000000000}(true, 0)
+    ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 15000000000000}()
+    │   └─ ← [Stop]
+    ├─ [14792] YubiiToken::transferFrom(0x0f32bdB01F9872BeA310e7a782054cA9C180d798, 0x05D811E04db174333402539AF50531312AbFd158, 15000000000000 [1.5e13])
+    │   ├─ emit Transfer(from: 0x0f32bdB01F9872BeA310e7a782054cA9C180d798, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 15000000000000 [1.5e13])
+    │   └─ ← [Return] true
+    ├─ [104606] PoolManager::unlock(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000f32bdb01f9872bea310e7a782054ca9c180d79800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011b5d4c2349000)
+    │   ├─ [102614] MatchMarket::unlockCallback(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000f32bdb01f9872bea310e7a782054ca9c180d79800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011b5d4c2349000)
+    │   │   ├─ [50074] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -4985000000000000 [-4.985e15], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   ├─ emit Swap(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -4985000000000000 [-4.985e15], amount1: 3319993360073399 [3.319e15], sqrtPriceX96: 52924465166446952960758601819 [5.292e28], liquidity: 10000000000000000 [1e16], tick: -8070, fee: 3000)
+    │   │   │   └─ ← [Return] -1696307599100878240364922418047364534104840006639926601 [-1.696e54]
+    │   │   ├─ [1273] PoolManager::settle{value: 4985000000000000}()
+    │   │   │   └─ ← [Return] 4985000000000000 [4.985e15]
+    │   │   ├─ [33747] PoolManager::take(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], 0x0f32bdB01F9872BeA310e7a782054cA9C180d798, 3319993360073399 [3.319e15])
+    │   │   │   ├─ [29674] OutcomeToken::transfer(0x0f32bdB01F9872BeA310e7a782054cA9C180d798, 3319993360073399 [3.319e15])
+    │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0x0f32bdB01F9872BeA310e7a782054cA9C180d798, value: 3319993360073399 [3.319e15])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x000000000000000000000000000000000000000000000000000bcb8430e242b7
+    │   └─ ← [Return] 0x000000000000000000000000000000000000000000000000000bcb8430e242b7
+    ├─ emit Buy(user: 0x0f32bdB01F9872BeA310e7a782054cA9C180d798, isTeamA: true, ethIn: 5000000000000000 [5e15], tokensOut: 3319993360073399 [3.319e15], yubiiFee: 15000000000000 [1.5e13])
+    └─ ← [Return]
+
+  [141323] MatchMarket::buy{value: 10000000000000000}(true, 0)
+    ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 30000000000000}()
+    │   └─ ← [Stop]
+    ├─ [14792] YubiiToken::transferFrom(0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, 0x05D811E04db174333402539AF50531312AbFd158, 30000000000000 [3e13])
+    │   ├─ emit Transfer(from: 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 30000000000000 [3e13])
+    │   └─ ← [Return] true
+    ├─ [88591] PoolManager::unlock(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000ddba213d346c994c3f7ae997d0101f4f21c3e6c5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   ├─ [86599] MatchMarket::unlockCallback(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000ddba213d346c994c3f7ae997d0101f4f21c3e6c5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   │   ├─ [34059] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -9970000000000000 [-9.97e15], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   ├─ emit Swap(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -9970000000000000 [-9.97e15], amount1: 2665576368874274 [2.665e15], sqrtPriceX96: 31805593391711582945228387618 [3.18e28], liquidity: 10000000000000000 [1e16], tick: -18255 [-1.825e4], fee: 3000)
+    │   │   │   └─ ← [Return] -3392615198201756480729844836094729068213654423631125726 [-3.392e54]
+    │   │   ├─ [1273] PoolManager::settle{value: 9970000000000000}()
+    │   │   │   └─ ← [Return] 9970000000000000 [9.97e15]
+    │   │   ├─ [33747] PoolManager::take(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, 2665576368874274 [2.665e15])
+    │   │   │   ├─ [29674] OutcomeToken::transfer(0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, 2665576368874274 [2.665e15])
+    │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, value: 2665576368874274 [2.665e15])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x00000000000000000000000000000000000000000000000000097853dc96a322
+    │   └─ ← [Return] 0x00000000000000000000000000000000000000000000000000097853dc96a322
+    ├─ emit Buy(user: 0xDdbA213D346c994c3F7ae997D0101F4F21c3e6c5, isTeamA: true, ethIn: 10000000000000000 [1e16], tokensOut: 2665576368874274 [2.665e15], yubiiFee: 30000000000000 [3e13])
+    └─ ← [Return]
+
+  [135977] MatchMarket::buy{value: 15000000000000000}(true, 0)
+    ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 45000000000000}()
+    │   └─ ← [Stop]
+    ├─ [14792] YubiiToken::transferFrom(0x9b1F0213370e1dd450AFF540E63C097983cc4F53, 0x05D811E04db174333402539AF50531312AbFd158, 46500000000000 [4.65e13])
+    │   ├─ emit Transfer(from: 0x9b1F0213370e1dd450AFF540E63C097983cc4F53, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 46500000000000 [4.65e13])
+    │   └─ ← [Return] true
+    ├─ [83245] PoolManager::unlock(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000010000000000000000000000009b1f0213370e1dd450aff540e63c097983cc4f5300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000035217e469db000)
+    │   ├─ [81253] MatchMarket::unlockCallback(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000010000000000000000000000009b1f0213370e1dd450aff540e63c097983cc4f5300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000035217e469db000)
+    │   │   ├─ [28713] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -14955000000000000 [-1.495e16], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   ├─ emit Swap(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -14955000000000000 [-1.495e16], amount1: 1503146445000919 [1.503e15], sqrtPriceX96: 19896440308984429252729877982 [1.989e28], liquidity: 10000000000000000 [1e16], tick: -27638 [-2.763e4], fee: 3000)
+    │   │   │   └─ ← [Return] -5088922797302634721094767254142093602322976853554999081 [-5.088e54]
+    │   │   ├─ [1273] PoolManager::settle{value: 14955000000000000}()
+    │   │   │   └─ ← [Return] 14955000000000000 [1.495e16]
+    │   │   ├─ [33747] PoolManager::take(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], 0x9b1F0213370e1dd450AFF540E63C097983cc4F53, 1503146445000919 [1.503e15])
+    │   │   │   ├─ [29674] OutcomeToken::transfer(0x9b1F0213370e1dd450AFF540E63C097983cc4F53, 1503146445000919 [1.503e15])
+    │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0x9b1F0213370e1dd450AFF540E63C097983cc4F53, value: 1503146445000919 [1.503e15])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000005571a8de650d7
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000005571a8de650d7
+    ├─ emit Buy(user: 0x9b1F0213370e1dd450AFF540E63C097983cc4F53, isTeamA: true, ethIn: 15000000000000000 [1.5e16], tokensOut: 1503146445000919 [1.503e15], yubiiFee: 46500000000000 [4.65e13])
+    └─ ← [Return]
+
+  [141291] MatchMarket::buy{value: 20000000000000000}(true, 0)
+    ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 60000000000000}()
+    │   └─ ← [Stop]
+    ├─ [14792] YubiiToken::transferFrom(0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, 0x05D811E04db174333402539AF50531312AbFd158, 64000000000000 [6.4e13])
+    │   ├─ emit Transfer(from: 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 64000000000000 [6.4e13])
+    │   └─ ← [Return] true
+    ├─ [88559] PoolManager::unlock(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000939dc1d66ede54d3f8826e28ff83be8fc1d2ccdc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000046d75308d24000)
+    │   ├─ [86567] MatchMarket::unlockCallback(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000939dc1d66ede54d3f8826e28ff83be8fc1d2ccdc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000046d75308d24000)
+    │   │   ├─ [34027] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -19940000000000000 [-1.994e16], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   ├─ emit Swap(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -19940000000000000 [-1.994e16], amount1: 836254575853123 [8.362e14], sqrtPriceX96: 13270948965085579906111020086 [1.327e28], liquidity: 10000000000000000 [1e16], tick: -35737 [-3.573e4], fee: 3000)
+    │   │   │   └─ ← [Return] -6785230396403512961459689672189458136431803745424146877 [-6.785e54]
+    │   │   ├─ [1273] PoolManager::settle{value: 19940000000000000}()
+    │   │   │   └─ ← [Return] 19940000000000000 [1.994e16]
+    │   │   ├─ [33747] PoolManager::take(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, 836254575853123 [8.362e14])
+    │   │   │   ├─ [29674] OutcomeToken::transfer(0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, 836254575853123 [8.362e14])
+    │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, value: 836254575853123 [8.362e14])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000002f891b0ef7e43
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000002f891b0ef7e43
+    ├─ emit Buy(user: 0x939Dc1D66EDe54d3f8826E28ff83bE8fc1D2cCdc, isTeamA: true, ethIn: 20000000000000000 [2e16], tokensOut: 836254575853123 [8.362e14], yubiiFee: 64000000000000 [6.4e13])
+    └─ ← [Return]
+
+  [135909] MatchMarket::buy{value: 10000000000000000}(true, 0)
+    ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 30000000000000}()
+    │   └─ ← [Stop]
+    ├─ [14792] YubiiToken::transferFrom(0xc4195570F268EB076240b0EDDac92BFEABC47AAF, 0x05D811E04db174333402539AF50531312AbFd158, 33000000000000 [3.3e13])
+    │   ├─ emit Transfer(from: 0xc4195570F268EB076240b0EDDac92BFEABC47AAF, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 33000000000000 [3.3e13])
+    │   └─ ← [Return] true
+    ├─ [83177] PoolManager::unlock(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000c4195570f268eb076240b0eddac92bfeabc47aaf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   ├─ [81185] MatchMarket::unlockCallback(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000c4195570f268eb076240b0eddac92bfeabc47aaf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   │   ├─ [28645] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xBE36AC9f72d4C187a351A3CCF964e613e6010C74, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -9970000000000000 [-9.97e15], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   ├─ emit Swap(id: 0xb837d9b7523297b431988d53be02e6800b3a658c7051b2f0e4dd8559765d73d9, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -9970000000000000 [-9.97e15], amount1: 239084037826292 [2.39e14], sqrtPriceX96: 11376730064738777215107581539 [1.137e28], liquidity: 10000000000000000 [1e16], tick: -38818 [-3.881e4], fee: 3000)
+    │   │   │   └─ ← [Return] -3392615198201756480729844836094729068216080915962173708 [-3.392e54]
+    │   │   ├─ [1273] PoolManager::settle{value: 9970000000000000}()
+    │   │   │   └─ ← [Return] 9970000000000000 [9.97e15]
+    │   │   ├─ [33747] PoolManager::take(OutcomeToken: [0xBE36AC9f72d4C187a351A3CCF964e613e6010C74], 0xc4195570F268EB076240b0EDDac92BFEABC47AAF, 239084037826292 [2.39e14])
+    │   │   │   ├─ [29674] OutcomeToken::transfer(0xc4195570F268EB076240b0EDDac92BFEABC47AAF, 239084037826292 [2.39e14])
+    │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0xc4195570F268EB076240b0EDDac92BFEABC47AAF, value: 239084037826292 [2.39e14])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000d972172566f4
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000d972172566f4
+    ├─ emit Buy(user: 0xc4195570F268EB076240b0EDDac92BFEABC47AAF, isTeamA: true, ethIn: 10000000000000000 [1e16], tokensOut: 239084037826292 [2.39e14], yubiiFee: 33000000000000 [3.3e13])
+    └─ ← [Return]
+
+  [158244] MatchMarket::buy{value: 8000000000000000}(false, 0)
+    ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 24000000000000}()
+    │   └─ ← [Stop]
+    ├─ [14792] YubiiToken::transferFrom(0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, 0x05D811E04db174333402539AF50531312AbFd158, 27200000000000 [2.72e13])
+    │   ├─ emit Transfer(from: 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 27200000000000 [2.72e13])
+    │   └─ ← [Return] true
+    ├─ [105512] PoolManager::unlock(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f1876a567d562720bab7fbe6615cb19af5b45d900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c562136ba8000)
+    │   ├─ [103520] MatchMarket::unlockCallback(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f1876a567d562720bab7fbe6615cb19af5b45d900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c562136ba8000)
+    │   │   ├─ [50967] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -7976000000000000 [-7.976e15], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   ├─ emit Swap(id: 0x43e06e57850cc7d76343a3d07a49d8065c53a3ee0f2d12d1057a153eea03a72d, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -7976000000000000 [-7.976e15], amount1: 4429612358952214 [4.429e15], sqrtPriceX96: 44133157729238350644730006841 [4.413e28], liquidity: 10000000000000000 [1e16], tick: -11703 [-1.17e4], fee: 3000)
+    │   │   │   └─ ← [Return] -2714092158561405184583875868875783254568626387641047786 [-2.714e54]
+    │   │   ├─ [1273] PoolManager::settle{value: 7976000000000000}()
+    │   │   │   └─ ← [Return] 7976000000000000 [7.976e15]
+    │   │   ├─ [33747] PoolManager::take(OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB], 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, 4429612358952214 [4.429e15])
+    │   │   │   ├─ [29674] OutcomeToken::transfer(0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, 4429612358952214 [4.429e15])
+    │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, value: 4429612358952214 [4.429e15])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x000000000000000000000000000000000000000000000000000fbcb57f25e516
+    │   └─ ← [Return] 0x000000000000000000000000000000000000000000000000000fbcb57f25e516
+    ├─ emit Buy(user: 0xf1876A567D562720BaB7FBE6615cB19aF5B45d90, isTeamA: false, ethIn: 8000000000000000 [8e15], tokensOut: 4429612358952214 [4.429e15], yubiiFee: 27200000000000 [2.72e13])
+    └─ ← [Return]
+
+  [141276] MatchMarket::buy{value: 12000000000000000}(false, 0)
+    ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 36000000000000}()
+    │   └─ ← [Stop]
+    ├─ [14792] YubiiToken::transferFrom(0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, 0x05D811E04db174333402539AF50531312AbFd158, 40800000000000 [4.08e13])
+    │   ├─ emit Transfer(from: 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 40800000000000 [4.08e13])
+    │   └─ ← [Return] true
+    ├─ [88544] PoolManager::unlock(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007a49d678b4cbdaf7fca6d3429d07357ae7fb4b690000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002a8131d217c000)
+    │   ├─ [86552] MatchMarket::unlockCallback(0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007a49d678b4cbdaf7fca6d3429d07357ae7fb4b690000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002a8131d217c000)
+    │   │   ├─ [33999] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -11964000000000000 [-1.196e16], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   ├─ emit Swap(id: 0x43e06e57850cc7d76343a3d07a49d8065c53a3ee0f2d12d1057a153eea03a72d, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -11964000000000000 [-1.196e16], amount1: 2223687587701386 [2.223e15], sqrtPriceX96: 26515289571302562641606647867 [2.651e28], liquidity: 10000000000000000 [1e16], tick: -21894 [-2.189e4], fee: 3000)
+    │   │   │   └─ ← [Return] -4071138237842107776875813803313674881857360312412298614 [-4.071e54]
+    │   │   ├─ [1273] PoolManager::settle{value: 11964000000000000}()
+    │   │   │   └─ ← [Return] 11964000000000000 [1.196e16]
+    │   │   ├─ [33747] PoolManager::take(OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB], 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, 2223687587701386 [2.223e15])
+    │   │   │   ├─ [29674] OutcomeToken::transfer(0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, 2223687587701386 [2.223e15])
+    │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, value: 2223687587701386 [2.223e15])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000007e66e9cc1a28a
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000007e66e9cc1a28a
+    ├─ emit Buy(user: 0x7A49D678B4CbDAF7Fca6D3429D07357AE7fb4B69, isTeamA: false, ethIn: 12000000000000000 [1.2e16], tokensOut: 2223687587701386 [2.223e15], yubiiFee: 40800000000000 [4.08e13])
+    └─ ← [Return]
+
+  [135990] MatchMarket::buy{value: 10000000000000000}(false, 0)
+    ├─ [0] 0x05D811E04db174333402539AF50531312AbFd158::fallback{value: 30000000000000}()
+    │   └─ ← [Stop]
+    ├─ [14792] YubiiToken::transferFrom(0xAd1f17f7190A48a654deE70f26A91fb243792003, 0x05D811E04db174333402539AF50531312AbFd158, 35000000000000 [3.5e13])
+    │   ├─ emit Transfer(from: 0xAd1f17f7190A48a654deE70f26A91fb243792003, to: 0x05D811E04db174333402539AF50531312AbFd158, value: 35000000000000 [3.5e13])
+    │   └─ ← [Return] true
+    ├─ [83258] PoolManager::unlock(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ad1f17f7190a48a654dee70f26a91fb243792003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   ├─ [81266] MatchMarket::unlockCallback(0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ad1f17f7190a48a654dee70f26a91fb243792003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000236ba984692000)
+    │   │   ├─ [28713] PoolManager::swap(PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), SwapParams({ zeroForOne: true, amountSpecified: -9970000000000000 [-9.97e15], sqrtPriceLimitX96: 4295128740 [4.295e9] }), 0x)
+    │   │   │   ├─ emit Swap(id: 0x43e06e57850cc7d76343a3d07a49d8065c53a3ee0f2d12d1057a153eea03a72d, sender: MatchMarket: [0xE16D0f588Fd2A01d7e86e6c48E7CbCE3c0709C3d], amount0: -9970000000000000 [-9.97e15], amount1: 835416227294993 [8.354e14], sqrtPriceX96: 19896440308984429252729877982 [1.989e28], liquidity: 10000000000000000 [1e16], tick: -27638 [-2.763e4], fee: 3000)
+    │   │   │   └─ ← [Return] -3392615198201756480729844836094729068215484583772705007 [-3.392e54]
+    │   │   ├─ [1273] PoolManager::settle{value: 9970000000000000}()
+    │   │   │   └─ ← [Return] 9970000000000000 [9.97e15]
+    │   │   ├─ [33747] PoolManager::take(OutcomeToken: [0xA4E88a2707209a5D84Fae7a88CF66861E1a2aFCB], 0xAd1f17f7190A48a654deE70f26A91fb243792003, 835416227294993 [8.354e14])
+    │   │   │   ├─ [29674] OutcomeToken::transfer(0xAd1f17f7190A48a654deE70f26A91fb243792003, 835416227294993 [8.354e14])
+    │   │   │   │   ├─ emit Transfer(from: PoolManager: [0xE03A1074c86CFeDd5C142C4F04F1a1536e203543], to: 0xAd1f17f7190A48a654deE70f26A91fb243792003, value: 835416227294993 [8.354e14])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000002f7ce7f77af11
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000002f7ce7f77af11
+    ├─ emit Buy(user: 0xAd1f17f7190A48a654deE70f26A91fb243792003, isTeamA: false, ethIn: 10000000000000000 [1e16], tokensOut: 835416227294993 [8.354e14], yubiiFee: 35000000000000 [3.5e13])
+    └─ ← [Return]
+
+
+==========================
+
+Chain 11155111
+
+Estimated gas price: 2.004784644 gwei
+
+Estimated total gas used for script: 10225160
+
+Estimated amount required: 0.02049924375044304 ETH
+
+==========================

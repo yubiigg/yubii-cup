@@ -10,6 +10,7 @@ remappings = [
     "v4-periphery/=lib/v4-periphery/src/",
 ]
 via_ir = true
+fs_permissions = [{ access = "read", path = "matches.json" }]
 
 [profile.default.fuzz]
 runs = 256
