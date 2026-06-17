@@ -81,13 +81,13 @@ contract YubiiFactory is Ownable {
 
     function freezeLeague() external onlyOwner {
         for (uint256 i = 0; i < markets.length; i++) {
-            MatchMarket(payable(markets[i])).holdMatch();
+            MatchMarket(payable(markets[i]))._factoryHold();
         }
     }
 
     function thawLeague() external onlyOwner {
         for (uint256 i = 0; i < markets.length; i++) {
-            MatchMarket(payable(markets[i])).resumeMatch();
+            MatchMarket(payable(markets[i]))._factoryResume();
         }
     }
 }

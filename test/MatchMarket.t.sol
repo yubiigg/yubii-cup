@@ -105,8 +105,12 @@ contract MatchMarketTest is Test {
         uint256 tokensReceived = tA.balanceOf(alice);
         assertGt(tokensReceived, 0);
 
-        // SHOBU fee collected
-        uint256 expectedFee = (ethIn * 30) / 10000;
+        // YUBII fee is computed on the post-buy EWMA (CEI order: state updated before fee calc).
+        // For the first buy with ewmaVolume=0 before: ewmaAfter = ethIn, blocksDelta = 0,
+        // so feeBps = FEE_MIN(30) + (BALANCED_MAX(300) - 30) * ethIn / FEE_SCALE(1e18).
+        uint256 postBuyEwma = ethIn; // _decayEwma(0,0) + ethIn
+        uint256 feeBps = 30 + (300 - 30) * postBuyEwma / 1 ether;
+        uint256 expectedFee = (ethIn * feeBps) / 10000;
         assertEq(yubii.balanceOf(alice), yubiiBefore - expectedFee);
         assertEq(yubii.balanceOf(feeRecipient), feeRecipientBefore + expectedFee);
     }

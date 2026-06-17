@@ -34,6 +34,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     uint256 internal constant PROFILE_MAX_SOFT       = 100; // max fee bps — SOFT
     uint256 internal constant PROFILE_MAX_BALANCED   = 300; // max fee bps — BALANCED
     uint256 internal constant PROFILE_MAX_AGGRESSIVE = 500; // max fee bps — AGGRESSIVE
+    uint256 internal constant FEE_PROFILE_COOLDOWN   = 1 hours;
 
     uint8 internal constant ACT_INIT = 0;
     uint8 internal constant ACT_BUY = 1;
@@ -82,6 +83,8 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
 
     bytes32 public pendingAssertionId;
     uint8 public pendingWinner;
+    bool public taxFinalised;
+    uint256 public lastFeeProfileChange;
 
     // ─────────────────────── events ──────────────────────────────────────────
 
@@ -119,6 +122,9 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     error AlreadyKickedAfter();
     error CannotReclaimOutcomeToken();
     error InvalidFeeProfile();
+    error TaxAlreadyFinalised();
+    error TaxCanOnlyReduce();
+    error FeeProfileCooldownActive();
 
     // ─────────────────────── structs ─────────────────────────────────────────
 
@@ -223,9 +229,16 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
 
     function reduceTax(uint256 newBuy, uint256 newSell) external {
         if (msg.sender != owner) revert OnlyOwner();
+        if (taxFinalised) revert TaxAlreadyFinalised();
         if (newBuy > 500 || newSell > 500) revert TaxTooHigh();
+        if (newBuy > buyTaxBps || newSell > sellTaxBps) revert TaxCanOnlyReduce();
         buyTaxBps = newBuy;
         sellTaxBps = newSell;
+    }
+
+    function finaliseTax() external {
+        if (msg.sender != owner) revert OnlyOwner();
+        taxFinalised = true;
     }
 
     function removeTax() external {
@@ -237,18 +250,34 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     function setFeeProfile(uint8 profile) external {
         if (msg.sender != owner) revert OnlyOwner();
         if (profile > 2) revert InvalidFeeProfile();
+        if (lastFeeProfileChange != 0 && block.timestamp < lastFeeProfileChange + FEE_PROFILE_COOLDOWN) {
+            revert FeeProfileCooldownActive();
+        }
+        lastFeeProfileChange = block.timestamp;
         feeProfile = profile;
         emit FeeProfileSet(profile);
     }
 
     function holdMatch() external {
-        if (msg.sender != owner && msg.sender != factory) revert OnlyOwner();
+        if (msg.sender != owner) revert OnlyOwner();
         held = true;
         emit MarketHeld();
     }
 
     function resumeMatch() external {
-        if (msg.sender != owner && msg.sender != factory) revert OnlyOwner();
+        if (msg.sender != owner) revert OnlyOwner();
+        held = false;
+        emit MarketResumed();
+    }
+
+    function _factoryHold() external {
+        if (msg.sender != factory) revert OnlyFactory();
+        held = true;
+        emit MarketHeld();
+    }
+
+    function _factoryResume() external {
+        if (msg.sender != factory) revert OnlyFactory();
         held = false;
         emit MarketResumed();
     }
@@ -311,18 +340,21 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         if (!limitsRemoved && msg.value > maxBuyETH) revert BuyLimitExceeded();
 
         uint256 tax = (msg.value * buyTaxBps) / 10000;
-        if (tax > 0) {
-            (bool ok,) = payable(marketingWallet).call{value: tax}("");
-            require(ok, "Tax transfer failed");
-        }
 
-        uint256 feeBps = currentFeeBps();
+        // Effects: update EWMA state before any external call (CEI)
         {
             uint256 bd = block.number > lastVolumeBlock ? block.number - lastVolumeBlock : 0;
             ewmaVolume      = _decayEwma(ewmaVolume, bd) + msg.value;
             lastVolumeBlock = block.number;
         }
+        uint256 feeBps   = currentFeeBps();
         uint256 yubiiFee = (msg.value * feeBps) / 10000;
+
+        // Interactions: external calls only after all state is updated
+        if (tax > 0) {
+            (bool ok,) = payable(marketingWallet).call{value: tax}("");
+            require(ok, "Tax transfer failed");
+        }
         if (yubiiFee > 0) {
             yubiiToken.transferFrom(msg.sender, feeRecipient, yubiiFee);
         }
@@ -410,12 +442,13 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         if (msg.sender != address(oracle)) revert OnlyOracle();
         if (assertionId != pendingAssertionId) return;
 
+        uint8 _w = pendingWinner;
         pendingAssertionId = bytes32(0);
+        pendingWinner = 0;
 
         if (assertedTruthfully) {
-            _executeSettlement(pendingWinner);
+            _executeSettlement(_w);
         }
-        // If disputed/rejected: state resets, new assertion can be submitted
     }
 
     function assertionDisputedCallback(bytes32 assertionId) external {
@@ -689,6 +722,20 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         // Snapshot winner supply AFTER LP tokens are burned (only user holdings remain)
         OutcomeToken winnerToken = _winner == 1 ? tokenA : tokenB;
         settledWinnerSupply = winnerToken.totalSupply();
+
+        if (settledWinnerSupply == 0) {
+            // No one holds the winning token — redeem() would divide by zero.
+            // Revert settled flag and sweep all ETH to owner for manual off-chain
+            // refund. Same recovery path as kickAfter().
+            settled = false;
+            kickedAfter = true;
+            uint256 bal = address(this).balance;
+            if (bal > 0) {
+                (bool ok,) = payable(owner).call{value: bal}("");
+                require(ok, "ETH transfer failed");
+            }
+            return;
+        }
 
         emit Settled(_winner, totalSettledETH);
     }
