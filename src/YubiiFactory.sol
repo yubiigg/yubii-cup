@@ -4,6 +4,13 @@ pragma solidity ^0.8.24;
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {MatchMarket} from "./MatchMarket.sol";
 
+///
+///        Website  : https://yubii.eth.limo/
+///        GitHub   : https://github.com/yubiigg
+///        Telegram : https://t.me/yubiieth
+///        X        : https://x.com/yubiieth
+///        Farcaster: https://farcaster.xyz/yubii
+///
 contract YubiiFactory is Ownable {
     address public immutable poolManager;
     address public immutable yubiiToken;
@@ -81,13 +88,13 @@ contract YubiiFactory is Ownable {
 
     function freezeLeague() external onlyOwner {
         for (uint256 i = 0; i < markets.length; i++) {
-            MatchMarket(payable(markets[i]))._factoryHold();
+            MatchMarket(payable(markets[i]))._factorySetHeld(true);
         }
     }
 
     function thawLeague() external onlyOwner {
         for (uint256 i = 0; i < markets.length; i++) {
-            MatchMarket(payable(markets[i]))._factoryResume();
+            MatchMarket(payable(markets[i]))._factorySetHeld(false);
         }
     }
 }

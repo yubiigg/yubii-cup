@@ -146,6 +146,13 @@ contract MatchMarketTest is Test {
         market.buy{value: ethIn}(true, impossibleMin);
     }
 
+    function test_buyReverts_afterKickoff() public {
+        vm.warp(block.timestamp + KICKOFF);
+        vm.expectRevert(MatchMarket.KickoffPassed.selector);
+        vm.prank(alice);
+        market.buy{value: 0.001 ether}(true, 0);
+    }
+
     // ─────────────────────── sell ─────────────────────────────────────────────
 
     function test_sell() public {

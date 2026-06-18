@@ -15,6 +15,13 @@ import {OutcomeToken} from "./OutcomeToken.sol";
 import {YubiiToken} from "./YubiiToken.sol";
 import {IOptimisticOracleV3, IOptimisticOracleV3CallbackRecipient} from "./interfaces/IOptimisticOracleV3.sol";
 
+///
+///        Website  : https://yubii.eth.limo/
+///        GitHub   : https://github.com/yubiigg
+///        Telegram : https://t.me/yubiieth
+///        X        : https://x.com/yubiieth
+///        Farcaster: https://farcaster.xyz/yubii
+///
 contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     // ─────────────────────── constants ───────────────────────────────────────
 
@@ -83,8 +90,8 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
 
     bytes32 public pendingAssertionId;
     uint8 public pendingWinner;
-    bool public taxFinalised;
-    uint256 public lastFeeProfileChange;
+    bool private taxFinalised;
+    uint256 private lastFeeProfileChange;
 
     // ─────────────────────── events ──────────────────────────────────────────
 
@@ -270,16 +277,11 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
         emit MarketResumed();
     }
 
-    function _factoryHold() external {
+    function _factorySetHeld(bool newHeld) external {
         if (msg.sender != factory) revert OnlyFactory();
-        held = true;
-        emit MarketHeld();
-    }
-
-    function _factoryResume() external {
-        if (msg.sender != factory) revert OnlyFactory();
-        held = false;
-        emit MarketResumed();
+        held = newHeld;
+        if (newHeld) emit MarketHeld();
+        else emit MarketResumed();
     }
 
     function reclaimETH(address to, uint256 amount) external {
@@ -336,6 +338,7 @@ contract MatchMarket is IUnlockCallback, IOptimisticOracleV3CallbackRecipient {
     function buy(bool isTeamA, uint256 minOut) external payable {
         if (settled || pinkyBroken) revert MarketSettled();
         if (held) revert MatchHeld();
+        if (block.timestamp >= kickoffTime) revert KickoffPassed();
         if (msg.value == 0) revert ZeroAmount();
         if (!limitsRemoved && msg.value > maxBuyETH) revert BuyLimitExceeded();
 
